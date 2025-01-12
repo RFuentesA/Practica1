@@ -39,3 +39,6 @@ class Equipo():
     
     def getEmpAsociado(self):
         return self.__empAsociado
+    
+    def getListaEquipos(self):
+        return self.__listaEquipos 

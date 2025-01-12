@@ -18,7 +18,6 @@ class investigador(Usuario):
         nombreInvestigador = input("Ingrese su nombre: ")
         tipo = input("Ingrese (Agregar Equipo) si desea adicionar un equipo a su inventario o (Quitar Equipo) si desea eliminar un equipo de su inventario: ")
         equipo = int(input("Ingrese el numero de placa de su Equipo: "))
-        fechaSolicitud = int(input("Ingrese la fecha del dia que hace la solicitud: "))
         estado = input("Escriba (Pendiente): ")
 
         for pc in listaEquipos:
@@ -27,5 +26,16 @@ class investigador(Usuario):
             else:
                 equipo = pc
         
+        print("ingrese la fecha que realizo la solicitud: ")
+        dd = input("Ingrese el dia: ")
+        mm = input("Ingrese el mes: ")
+        aa = input("Ingrese el año: ")
+        fechaSolictud = Fecha(dd, mm, aa)
 
-
+        print("Ingrese la hora que realizo la solicitud: ")
+        hh = input("Ingrese hora: ")
+        nn = input("Ingrese minuto: ")
+        ss = input("Ingrese segundo: ")
+        horaSolicitud = Hora(hh, nn, ss)
+            
+        
