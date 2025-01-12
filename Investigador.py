@@ -3,8 +3,9 @@ from Equipo import *
 from FechaHora import *
 
 class investigador(Usuario):
-    def __init__(self, nombre, id, fechaNacimiento, ciudadNacimiento, telefono, email, dir, inventario = None):
+    def __init__(self, nombre, id, fechaNacimiento, ciudadNacimiento, telefono, email, dir, contraseña, inventario = None):
         super().__init__(nombre, id, fechaNacimiento, ciudadNacimiento,telefono, email, dir)
+        self.__contraseña = contraseña
         self.__inventario = inventario if inventario is not None else [] 
     
     def setInventario(self, inventario):
@@ -40,11 +41,23 @@ class investigador(Usuario):
 
         fechahora = FechaHora(fechita, horita)
 
-        soli = Solicitud(nombreInvestigador, tipo, equipo, fechahora, estado)
+        solicitudes = Solicitud(nombreInvestigador, tipo, equipo, fechahora, estado)
 
-        while isinstance(soli, Solicitud):
-            Solicitudes.append(soli)
-            break
+        if isinstance(solicitudes, Solicitud):
+            listaSolicitudes.append(solicitudes)
+            print("Solicitud creada y agregada con exito")
+        else:
+            print("Ha ocurrido un error en el proceso")
+
+    def generarInventario(self, lista, nombreArchivo):
+        with open(nombreArchivo, "w") as archivo:
+            for elemento in lista:
+                archivo.write(f"{elemento}\n")
+        print(f"Lista guardada correctamente como: {nombreArchivo}")
+    
+    def verSolicitudes():
+        pass
+
 
 
             
