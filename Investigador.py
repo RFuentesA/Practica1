@@ -1,7 +1,6 @@
 from Usuario import *
 from Equipo import *
-from Fecha import *
-from Hora import *
+from FechaHora import *
 
 class investigador(Usuario):
     def __init__(self, nombre, id, fechaNacimiento, ciudadNacimiento, telefono, email, dir, inventario = None):
@@ -20,22 +19,33 @@ class investigador(Usuario):
         equipo = int(input("Ingrese el numero de placa de su Equipo: "))
         estado = input("Escriba (Pendiente): ")
 
-        for pc in listaEquipos:
-            if pc.getNumeroPlaca() != equipo:
-                print("Error: equipo no existe")
+        for pcs in range(self.__listaEquipos):
+            if isinstance(self.__listaEquipos[pcs], Equipo):
+                if self.__listaEquipos[pcs].getNumeroPlaca() != equipo:
+                    print("Error: equipo no existe")
             else:
-                equipo = pc
+                equipo = pcs
         
         print("ingrese la fecha que realizo la solicitud: ")
         dd = input("Ingrese el dia: ")
         mm = input("Ingrese el mes: ")
         aa = input("Ingrese el año: ")
-        fechaSolictud = Fecha(dd, mm, aa)
+        fechita = Fecha(dd, mm, aa)
 
         print("Ingrese la hora que realizo la solicitud: ")
         hh = input("Ingrese hora: ")
         nn = input("Ingrese minuto: ")
         ss = input("Ingrese segundo: ")
-        horaSolicitud = Hora(hh, nn, ss)
+        horita = Hora(hh, nn, ss)
+
+        fechahora = FechaHora(fechita, horita)
+
+        soli = Solicitud(nombreInvestigador, tipo, equipo, fechahora, estado)
+
+        while isinstance(soli, Solicitud):
+            Solicitudes.append(soli)
+            break
+
+
             
         
