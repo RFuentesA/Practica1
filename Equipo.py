@@ -2,13 +2,14 @@ from Usuario import Usuario
 from Fecha import Fecha
 
 class Equipo():
-    def __init__(self, nombre, numeroPlaca, valorCompra):
+    def __init__(self, nombre, numeroPlaca, valorCompra, listaEquipos = []):
         self.__nombre = nombre
         self.__numeroPlaca = numeroPlaca
         self.__fechaCompra = Fecha
         self.__valorCompra = valorCompra
         self.__empAsociado = Usuario
-    
+        self.__listaEquipos = listaEquipos
+
     def setNombre(self, n):
         self.__nombre = n
     
