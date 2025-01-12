@@ -14,7 +14,7 @@ class investigador(Usuario):
     def getInventario(self):
         return self.__inventario
 
-    def generarSolicitud(Solicitud):
+    def generarSolicitud(self, Solicitud):
         nombreInvestigador = input("Ingrese su nombre: ")
         tipo = input("Ingrese (Agregar Equipo) si desea adicionar un equipo a su inventario o (Quitar Equipo) si desea eliminar un equipo de su inventario: ")
         equipo = int(input("Ingrese el numero de placa de su Equipo: "))
@@ -44,7 +44,7 @@ class investigador(Usuario):
         solicitudes = Solicitud(nombreInvestigador, tipo, equipo, fechahora, estado)
 
         if isinstance(solicitudes, Solicitud):
-            listaSolicitudes.append(solicitudes)
+            self.__listaSolicitudes.append(solicitudes)
             print("Solicitud creada y agregada con exito")
         else:
             print("Ha ocurrido un error en el proceso")
