@@ -41,6 +41,7 @@ class Solicitud():
     def setListaSolicitudes(self, listaSolicitudes):
         self.__listaSolicitudes = listaSolicitudes
     
-    def buscarSolicitud(self, Investigador, FechaHora):
-        for solicitud in self.__listaSolicitudes:
-            if solicitud.getNombreInvestigador() not in self.__lis
+    def buscarSolicitud(self, nombreInvestigador, numeroPlaca):
+        
+
+            

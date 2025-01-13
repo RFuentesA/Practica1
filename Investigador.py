@@ -1,6 +1,7 @@
 from Usuario import *
 from Equipo import *
 from FechaHora import *
+from Solicitud import *
 
 class investigador(Usuario):
     def __init__(self, nombre, id, fechaNacimiento, ciudadNacimiento, telefono, email, dir, contraseña, inventario = None):
@@ -55,8 +56,11 @@ class investigador(Usuario):
                 archivo.write(f"{elemento}\n")
         print(f"Lista guardada correctamente como: {nombreArchivo}")
     
-    def verSolicitudes():
-        pass
+    def verSolicitudes(self):
+        nombreInvestigador = self.__nombre
+        numeroPlaca = int(input("Ingrese el numero de placa del Equipo: "))
+
+        resultadoBusqueda = Solicitud.buscarSolicitud(nombreInvestigador, numeroPlaca)
 
 
 
