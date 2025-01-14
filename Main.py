@@ -12,12 +12,6 @@ with open("Textos/Empleados.txt", "r") as empleados:
         x.append(xi)
         emp.addLast(x)
 
-"""temp = emp.First()
-while temp != None and temp.getNext() != None:
-    print (temp.getData())
-    temp = temp.getNext()
-print(temp.getData())"""
-
 #Cargue de contraseñas
 pss = List(None,None,0)
 with open("Textos/Password.txt", "r") as contraseñas:
@@ -25,19 +19,11 @@ with open("Textos/Password.txt", "r") as contraseñas:
         x = i.split()
         pss.addLast(x)
     
-"""temp = pss.First()
-while temp != None and temp.getNext() != None:
-    print (temp.getData())
-    temp = temp.getNext()
-print(temp.getData())"""
-
 print("*** Bienvenido al sistema ***")
 NumId = input("ID: ")
 contra = input("Contraseña: ")
 
 #menu de opciones
-#Consultar Inventario a su nombre o en txt, hacer solicitudes de agregar"Adicionar equipo" o eliminar"Eliminar equipo"
-#Consultar Estado de solicitudes consola o txt
 def OpcionesInvestigador():
     print("***********MENU***********")
     print("1.txt inventario")
@@ -83,7 +69,20 @@ def OpcionesAdministrador():
         pass
     elif op == 4:
         pass
-        
+    elif op == 5:
+        pass
+    elif op == 6:
+        pass
+    elif op == 7:
+        pass
+    elif op == 8:
+        pass
+    elif op == 9:
+        pass
+    elif op == 10:
+        pass
+    elif op == 11:
+        pass
     else:
         print("Opcion incorrecta")
     
@@ -92,8 +91,8 @@ IV = None
 AD = None
 
 #Ciclo para verificar id y contraseña ingresados vf = verificacion
-temp = pss.First()
 vf = False
+temp = pss.First()
 while temp != None and temp.getNext() != None:
     if temp.getData()[0] == NumId and temp.getData()[1] == contra:
         vf = True
@@ -163,6 +162,7 @@ while temp != None and temp.getNext() != None:
                     apto = k[5]
                     AD.setDir(Direccion(calle,nomn,brr,ciudad,edfc,apto))
                     print("Admin encontrado", AD)
+                    OpcionesAdministrador()
                 temp1 = temp1.getNext()
             #tail lista empleados
             if temp.getData()[0] == temp1.getData()[1]:
@@ -181,6 +181,7 @@ while temp != None and temp.getNext() != None:
                     apto = k[5]
                     AD.setDir(Direccion(calle,nomn,brr,ciudad,edfc,apto))
                     print("Admin encontrado", AD)
+                    OpcionesAdministrador()
     temp = temp.getNext()
     
 #este es el tail de la lista de contraseña
@@ -253,6 +254,7 @@ if temp.getData()[0] == NumId and temp.getData()[1] == contra:
                 apto = k[5]
                 AD.setDir(Direccion(calle,nomn,brr,ciudad,edfc,apto))
                 print("Admin encontrado", AD)
+                OpcionesAdministrador()
             temp1 = temp1.getNext()
         #tail lista empleados
         if temp.getData()[0] == temp1.getData()[1]:
@@ -271,6 +273,7 @@ if temp.getData()[0] == NumId and temp.getData()[1] == contra:
                 apto = k[5]
                 AD.setDir(Direccion(calle,nomn,brr,ciudad,edfc,apto))
                 print("Admin encontrado", AD)
+                OpcionesAdministrador()
 
 if vf == False: 
     print("Acceso incorrecto")
