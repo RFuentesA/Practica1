@@ -42,3 +42,6 @@ class Equipo():
     
     def getListaEquipos(self):
         return self.__listaEquipos 
+    
+    def __str__(self):
+        return str(self.__nombre) +" "+ str(self.__numeroPlaca) +" "+ str(self.__fechaCompra) +" "+ str(self.__valorCompra)

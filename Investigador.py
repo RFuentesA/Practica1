@@ -62,6 +62,7 @@ class investigador(Usuario):
     def generarInventario(self, lista, nombreArchivo):
         with open(nombreArchivo, "w") as archivo:
             for elemento in lista:
+                elemento = elemento.__str__()
                 archivo.write(f"{elemento}\n")
         print(f"Lista guardada correctamente como: {nombreArchivo}")
     
