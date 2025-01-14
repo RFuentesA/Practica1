@@ -32,10 +32,10 @@ class investigador(Usuario):
 
         for pcs in range(self.__listaEquipos):
             if isinstance(self.__listaEquipos[pcs], Equipo):
-                if self.__listaEquipos[pcs].getNumeroPlaca() != equipo:
-                    print("Error: equipo no existe")
+                if self.__listaEquipos[pcs].getNumeroPlaca() == equipo:
+                    equipo = pcs
             else:
-                equipo = pcs
+                print("El equipo buscado no se encuentra.")
         
         print("ingrese la fecha que realizo la solicitud: ")
         dd = input("Ingrese el dia: ")
