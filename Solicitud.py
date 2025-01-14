@@ -26,6 +26,9 @@ class Solicitud():
     def getEquipo(self):
         return Equipo
     
+    def setEquipo(self):
+        self.__equipo = Equipo
+    
     def getFechaSolicitud(self):
         return FechaHora
     
