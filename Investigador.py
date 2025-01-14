@@ -69,23 +69,24 @@ class investigador(Usuario):
         nombreInvestigador = self.__nombre
         numeroPlaca = int(input("Ingrese el numero de placa del Equipo: "))
 
-        """resultadoBusqueda = Solicitud.buscarSolicitud(nombreInvestigador, numeroPlaca)"""
-
-            
-    if resultadoBusqueda != None:
-        with open("archivoSolicitudes.json", "w") as archivo:
-            json.dump(resultadoBusqueda.paraDictar(), archivo)
-        
-        print("El objeto ha sido guardado con exito")
-
-    else:
-        print("La solicitud se encuentra vacia ")
+        resultadoBusqueda = Solicitud.buscarSolicitud(nombreInvestigador, numeroPlaca)
+          
+        if resultadoBusqueda != None:
+            with open("archivoSolicitudes.json", "w") as archivo:
+                json.dump(resultadoBusqueda.paraDictar(), archivo)
+            print("El objeto ha sido guardado con exito")
+        else:
+            print("La solicitud se encuentra vacia ")
     
-    with open("archivoSolicitudes.json", "r") as archivo:
-        data = 
+        with open("archivoSolicitudes.json", "r") as archivo:
+            data = json.load(archivo)
+    
+        leerSolicitud = Solicitud.delDiccionario(data)
+        print("Ya puede visualizar la solicitud. ")
+        print(leerSolicitud)
 
-    def __str__(self):
-            return "Objeto creado :)"
+        def __str__(self):
+                return "Objeto creado :)"
 
 
             
