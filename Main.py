@@ -1,4 +1,4 @@
-from Administrador import *; from Investigador import *;from Direccion import *; from Equipo import *;from FechaHora import *
+from Investigador import *;from Direccion import *; from Equipo import *;from FechaHora import *
 from Fecha import *; from Hora import *; from List import *; from ListaDoble import *;from Nodo import *; from NodoDoble import*
 from Solicitud import *;from Usuario import *
 
@@ -12,11 +12,11 @@ with open("Textos/Empleados.txt", "r") as empleados:
         x.append(xi)
         emp.addLast(x)
 
-temp = emp.First()
+"""temp = emp.First()
 while temp != None and temp.getNext() != None:
     print (temp.getData())
     temp = temp.getNext()
-print(temp.getData())
+print(temp.getData())"""
 
 #Cargue de contraseñas
 pss = List(None,None,0)
@@ -34,6 +34,27 @@ print(temp.getData())"""
 print("*** Bienvenido al sistema ***")
 NumId = input("ID: ")
 contra = input("Contraseña: ")
+
+#menu de opciones
+#Consultar Inventario a su nombre o en txt, hacer solicitudes de agregar"Adicionar equipo" o eliminar"Eliminar equipo"
+#Consultar Estado de solicitudes consola o txt
+def OpcionesInvestigador():
+    print("***********MENU***********")
+    print("1.txt inventario")
+    print("2.Adicionar equipo")
+    print("3.Eliminar equipo")
+    print("4.txt Estado Solicitudes")
+    op = int(input())
+    if op == 1:
+        print("txt")
+    elif op == 2:
+        pass
+    elif op == 3:
+        pass
+    elif op == 4:
+        pass
+    else:
+        print("Opcion incorrecta")
 
 #apuntadores para la sesion iniciada, investigador o admin
 IV = None
@@ -65,6 +86,8 @@ while temp != None and temp.getNext() != None:
                     apto = k[5]
                     IV.setDir(Direccion(calle,nomn,brr,ciudad,edfc,apto))
                     print("empleado encontrado", IV)
+                    OpcionesInvestigador()
+                    
                     
                 temp1 = temp1.getNext()
             #tail de la lista de empleados
@@ -85,6 +108,7 @@ while temp != None and temp.getNext() != None:
                     apto = k[5]
                     IV.setDir(Direccion(calle,nomn,brr,ciudad,edfc,apto))
                     print("empleado encontrado", IV)
+                    OpcionesInvestigador()
                     
     temp = temp.getNext()
     
@@ -111,6 +135,7 @@ if temp.getData()[0] == NumId and temp.getData()[1] == contra:
                     apto = k[5]
                     IV.setDir(Direccion(calle,nomn,brr,ciudad,edfc,apto))
                     print("empleado encontrado", IV)
+                    OpcionesInvestigador()
                      
                     
                 temp1 = temp1.getNext()
@@ -132,6 +157,7 @@ if temp.getData()[0] == NumId and temp.getData()[1] == contra:
                     apto = k[5]
                     IV.setDir(Direccion(calle,nomn,brr,ciudad,edfc,apto))
                     print("empleado encontrado", IV)
+                    OpcionesInvestigador()
     
 
 if vf == False: 
