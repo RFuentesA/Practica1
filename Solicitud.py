@@ -41,12 +41,20 @@ class Solicitud():
     def setListaSolicitudes(self, listaSolicitudes):
         self.__listaSolicitudes = listaSolicitudes
     
+    def paraDictar(self):
+        return {"nombreInvestigador": self.__nombreInvestigador, "Tipo": self.__tipo, "Equipo": self.__equipo, "FechaSolicitud": self.__fechaSolicitud, "Estado": self.__estado}
+    
+    @classmethod
+    def delDiccionario(cls, data):
+        return cls(data["nombreInvestigador"], data["Tipo"], data["Equipo"], data["FechaSolicitud"], data["Estado"])
+    
     def buscarSolicitud(self, nombreInvestigador, numeroPlaca):
-        for solicitudBuscada in self.__listaSolicitudes:
-            if nombreInvestigador not in self.__listaSolicitudes and numeroPlaca not in self.__listaSolicitudes:
-                return print("La solicitud buscada no existe.")
-            else:
+        for solicitudBuscada in range(self.__listaSolicitudes):
+            if self.__listaSolicitudes[solicitudBuscada].getNombreInvestigador() == nombreInvestigador and self.__listaSolicitudes[solicitudBuscada].getNumeroPlaca() == numeroPlaca:
                 return solicitudBuscada
-        
+        return None
+    
+    def ejecutarSolicitud():
+        pass
 
             

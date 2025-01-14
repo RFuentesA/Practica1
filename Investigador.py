@@ -1,7 +1,8 @@
-from Usuario import *
-from Equipo import *
+from Usuario import Usuario
+from Equipo import Equipo
 from FechaHora import *
-from Solicitud import *
+from Solicitud import Solicitud
+import json
 
 class investigador(Usuario):
     def __init__(self, nombre, id, ciudadNacimiento, telefono, email, contraseña, inventario = None):
@@ -69,5 +70,25 @@ class investigador(Usuario):
 
         """resultadoBusqueda = Solicitud.buscarSolicitud(nombreInvestigador, numeroPlaca)"""
 
+<<<<<<< HEAD
     def __str__(self):
         return "Objeto creado :)"        
+=======
+        if resultadoBusqueda != None:
+            with open("archivoSolicitudes.json", "w") as archivo:
+                json.dump(resultadoBusqueda.paraDictar(), archivo)
+            
+            print("El objeto ha sido guardado con exito")
+
+        else:
+            print("La solicitud se encuentra vacia ")
+        
+        with open("archivoSolicitudes.json", "r") as archivo:
+            data = 
+
+
+
+
+            
+        
+>>>>>>> 99f7fe441fd83a0414bddc8530961d6ed85c6f51
