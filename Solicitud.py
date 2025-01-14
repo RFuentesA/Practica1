@@ -42,6 +42,11 @@ class Solicitud():
         self.__listaSolicitudes = listaSolicitudes
     
     def buscarSolicitud(self, nombreInvestigador, numeroPlaca):
+        for solicitudBuscada in self.__listaSolicitudes:
+            if nombreInvestigador not in self.__listaSolicitudes and numeroPlaca not in self.__listaSolicitudes:
+                return print("La solicitud buscada no existe.")
+            else:
+                return solicitudBuscada
         
 
             
