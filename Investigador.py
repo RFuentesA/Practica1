@@ -4,8 +4,15 @@ from FechaHora import *
 from Solicitud import *
 
 class investigador(Usuario):
-    def __init__(self, nombre, id, fechaNacimiento, ciudadNacimiento, telefono, email, dir, contraseña, inventario = None):
-        super().__init__(nombre, id, fechaNacimiento, ciudadNacimiento,telefono, email, dir)
+    def __init__(self, nombre, id, ciudadNacimiento, telefono, email, contraseña, inventario = None):
+        """super().__init__(nombre, id, fechaNacimiento, ciudadNacimiento,telefono, email, dir)"""
+        self.__nombre = nombre
+        self.__id = id
+        self.__fechaNacimiento = Fecha
+        self.__ciudadNacimiento = ciudadNacimiento
+        self.__telefono = telefono
+        self.__email = email
+        self.__dir = Direccion
         self.__contraseña = contraseña
         self.__inventario = inventario if inventario is not None else [] 
     
@@ -60,9 +67,7 @@ class investigador(Usuario):
         nombreInvestigador = self.__nombre
         numeroPlaca = int(input("Ingrese el numero de placa del Equipo: "))
 
-        resultadoBusqueda = Solicitud.buscarSolicitud(nombreInvestigador, numeroPlaca)
+        """resultadoBusqueda = Solicitud.buscarSolicitud(nombreInvestigador, numeroPlaca)"""
 
-
-
-            
-        
+    def __str__(self):
+        return "Objeto creado :)"        
