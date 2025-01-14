@@ -65,25 +65,25 @@ class investigador(Usuario):
                 archivo.write(f"{elemento}\n")
         print(f"Lista guardada correctamente como: {nombreArchivo}")
     
-    def verSolicitudes(self):
-        nombreInvestigador = self.__nombre
-        numeroPlaca = int(input("Ingrese el numero de placa del Equipo: "))
+    def verSolicitudes(self): #Método para mostrar las solicitudes que tenga el investigador.
+        nombreInvestigador = self.__nombre #Damos el nombre del investigador.
+        numeroPlaca = int(input("Ingrese el numero de placa del Equipo: ")) #El investigador ingresa el numero de su equipo.
 
-        resultadoBusqueda = Solicitud.buscarSolicitud(nombreInvestigador, numeroPlaca)
+        resultadoBusqueda = Solicitud.buscarSolicitud(nombreInvestigador, numeroPlaca) #Variable que llama al método de la clase Solicitud y luego esta apunta a una instancia de la clase Solicitud.
           
-        if resultadoBusqueda != None:
-            with open("archivoSolicitudes.json", "w") as archivo:
-                json.dump(resultadoBusqueda.paraDictar(), archivo)
+        if resultadoBusqueda != None: #Verificamos que lo que hayamos pasado no este vacio.
+            with open("archivoSolicitudes.json", "w") as archivo: 
+                json.dump(resultadoBusqueda.paraDictar(), archivo) #Usamos a JSON para guardar el objeto como un diccionario.
             print("El objeto ha sido guardado con exito")
         else:
             print("La solicitud se encuentra vacia ")
     
-        with open("archivoSolicitudes.json", "r") as archivo:
-            data = json.load(archivo)
+        with open("archivoSolicitudes.json", "r") as archivo: #Luego leemos el archivo
+            data = json.load(archivo) 
     
-        leerSolicitud = Solicitud.delDiccionario(data)
+        leerSolicitud = Solicitud.delDiccionario(data) #Usando el método delDiccionario reconstruimos el objeto desde el diccionario creado anteriormente.
         print("Ya puede visualizar la solicitud. ")
-        print(leerSolicitud)
+        print(leerSolicitud) #El investigador ya puede leer sus solicitudes.
 
         def __str__(self):
                 return "Objeto creado :)"

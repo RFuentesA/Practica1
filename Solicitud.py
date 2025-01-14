@@ -41,18 +41,18 @@ class Solicitud():
     def setListaSolicitudes(self, listaSolicitudes):
         self.__listaSolicitudes = listaSolicitudes
     
-    def paraDictar(self):
+    def paraDictar(self): #Creamos el diccionario que contenga los atributos de las solicitudes.
         return {"nombreInvestigador": self.__nombreInvestigador, "Tipo": self.__tipo, "Equipo": self.__equipo, "FechaSolicitud": self.__fechaSolicitud, "Estado": self.__estado}
     
     @classmethod
-    def delDiccionario(cls, data):
+    def delDiccionario(cls, data): #Método que convierte el objeto en un diccionario.
         return cls(data["nombreInvestigador"], data["Tipo"], data["Equipo"], data["FechaSolicitud"], data["Estado"])
     
-    def buscarSolicitud(self, nombreInvestigador, numeroPlaca):
-        for solicitudBuscada in range(self.__listaSolicitudes):
-            if self.__listaSolicitudes[solicitudBuscada].getNombreInvestigador() == nombreInvestigador and self.__listaSolicitudes[solicitudBuscada].getNumeroPlaca() == numeroPlaca:
-                return solicitudBuscada
-        return None
+    def buscarSolicitud(self, nombreInvestigador, numeroPlaca): #Método para buscar la solicitud.
+        for solicitudBuscada in self.__listaSolicitudes: #Iteramos en la lista de las solicitudes y hacemos la comparación 
+            if solicitudBuscada.getNombreInvestigador() == nombreInvestigador and solicitudBuscada.getNumeroPlaca() == numeroPlaca:
+                return solicitudBuscada #Al encontrar la solicitud o solicitudes retornamos dicha solicitud
+        return None #De lo contrario retornamos vacio.
     
     def ejecutarSolicitud():
         pass
