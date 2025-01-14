@@ -46,7 +46,9 @@ def OpcionesInvestigador():
     print("4.txt Estado Solicitudes")
     op = int(input())
     if op == 1:
-        print("txt")
+        n = IV.getNombre()
+        id = str(IV.getId())
+        IV.generarInventario(IV.generarInventario, n + id)
     elif op == 2:
         pass
     elif op == 3:
