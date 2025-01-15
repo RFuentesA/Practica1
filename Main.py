@@ -47,6 +47,7 @@ def OpcionesInvestigador():
 
 def OpcionesAdministrador():
     print("***********MENU***********")
+    print("0.Buscar usuario registrado")
     print("1.txt inventario")
     print("2.Agregar usuario")
     print("3.Eliminar usuario")
@@ -59,7 +60,22 @@ def OpcionesAdministrador():
     print("10.Solicitudes agregar(txt)")
     print("11.Solicitudes eliminar(txt)")
     op = int(input())
-    if op == 1:
+    if op == 0:
+        idBuscado = input("Id que busca: ")
+        temp = emp.First()
+        while temp != None and temp.getNext() != None:
+            if idBuscado == temp.getData()[1]:
+                p = ""
+                for x in range(len(temp.getData())):
+                    p += str(temp.getData()[x])+" "
+                print(p)
+            temp = temp.getNext()
+        if idBuscado == temp.getData()[1]:
+            p = ""
+            for x in range(len(temp.getData())):
+                p += str(temp.getData()[x])+" "
+            print(p)
+    elif op == 1:
         n = AD.getNombre()
         id = str(AD.getId())
         AD.generarInventario(AD.getInventario(), n + " " + id)
@@ -124,9 +140,71 @@ def OpcionesAdministrador():
             print("Opcion Incorrecta")
             OpcionesAdministrador()
     elif op == 3:
-        pass
+        IdErase = input("Id a eliminar: ")
+        temp = emp.First()
+        #Elimino segun ID del txt de empleados
+        while temp !=  None and temp.getNext() != None:
+            if temp.getData()[1] == IdErase:
+                with open("Textos/Empleados.txt", "r") as archivo:
+                    lineas = archivo.readlines()
+                    
+                lineas = [linea for linea in lineas if str(IdErase) not in linea]
+                with open("Textos/Empleados.txt", "w") as archivo:
+                    archivo.writelines(lineas)
+            temp = temp.getNext()
+        if temp.getData()[1] == IdErase:
+                with open("Textos/Empleados.txt", "r") as archivo:
+                    lineas = archivo.readlines()
+                lineas = [linea for linea in lineas if str(IdErase) not in linea]
+                with open("Textos/Empleados.txt", "w") as archivo:
+                    archivo.writelines(lineas)
+
+        #Elimino segun ID del txt de password
+        temp1= pss.First()
+        while temp1 != None and temp1.getNext() != None:
+            if temp1.getData()[0] == IdErase:
+                with open("Textos/Password.txt", "r") as archivo:
+                    lineas = archivo.readlines()
+                    
+                lineas = [linea for linea in lineas if str(IdErase) not in linea]
+                with open("Textos/Password.txt", "w") as archivo:
+                    archivo.writelines(lineas)
+            temp1 = temp1.getNext()
+        if temp1.getData()[0] == IdErase:
+                with open("Textos/Password.txt", "r") as archivo:
+                    lineas = archivo.readlines()
+                    
+                lineas = [linea for linea in lineas if str(IdErase) not in linea]
+                with open("Textos/Password.txt", "w") as archivo:
+                    archivo.writelines(lineas)
     elif op == 4:
-        pass
+        IdaCambiar = input("Id a cambiar: ")
+        NContraseña = input("Nueva Contraseña: ")
+        temp1 = pss.First()
+        while temp1 != None and temp1.getNext() != None:
+            if temp1.getData()[0] == IdaCambiar:
+                with open("Textos/Password.txt", "r") as archivo:
+                    lineas= archivo.readlines()
+                for i in range(len(lineas)):
+                    if IdaCambiar in lineas[i]:
+                        if i == len(lineas)-1:
+                            lineas[i] = str(IdaCambiar+" "+NContraseña+" "+temp1.getData()[2])
+                        else:
+                            lineas[i] = str(IdaCambiar+" "+NContraseña+" "+temp1.getData()[2])+"\n"
+                with open("Textos/Password.txt", "w") as archivo:
+                    archivo.writelines(lineas)
+            temp1 = temp1.getNext()
+        if temp1.getData()[0] == IdaCambiar:
+                with open("Textos/Password.txt", "r") as archivo:
+                    lineas= archivo.readlines()
+                for i in range(len(lineas)):
+                    if IdaCambiar in lineas[i]:
+                        if i == len(lineas)-1:
+                            lineas[i] = str(IdaCambiar+" "+NContraseña+" "+temp1.getData()[2])
+                        else:
+                            lineas[i] = str(IdaCambiar+" "+NContraseña+" "+temp1.getData()[2])+"\n"
+                with open("Textos/Password.txt", "w") as archivo:
+                    archivo.writelines(lineas)
     elif op == 5:
         pass
     elif op == 6:
