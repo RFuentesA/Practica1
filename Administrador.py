@@ -16,6 +16,7 @@ class Administrador(Usuario):
         self.__dir = Direccion
         self.__contraseña = contraseña
         self.__inventario = inventario if inventario is not None else []
+        self.__listaSolicitudes = [Solicitud]
     
     def setInventario(self, inventario):
         self.__inventario = inventario
@@ -44,12 +45,17 @@ class Administrador(Usuario):
     def getPss(self):
         return self.__contraseña
     
+    def getNombre (self):
+        return self.__nombre
+    
     """Registrar Nuevos usuarios, cambiar contraseñas, eliminar usuarios, Solicitudes de nuevo equipo, Lo mismo para eliminar equipo"""
     """Generar txt segun el investigador y txt de todos los investigadores ordenado de menor a mayor segun la placa"""
     """txt´s de control de cambios, solicitudes agregar y eliminar"""  
     
+    #Lista de solicitudes 
+    
     def generarInventario(self, lista, nombreArchivo):
-        with open(nombreArchivo, "w") as archivo:
+        with open("Textos/" + nombreArchivo, "w") as archivo:
             for elemento in lista:
                 elemento = elemento.__str__()
                 archivo.write(f"{elemento}\n")

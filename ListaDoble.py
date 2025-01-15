@@ -6,7 +6,7 @@ class ListaDoble():
         self.__tail = tail
         self.__size = size
         
-    def DoubleList(self):
+    def ListaDoble(self):
         self.__init__(None, None, 0)
         
     def size(self):

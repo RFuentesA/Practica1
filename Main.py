@@ -2,6 +2,10 @@ from Investigador import *;from Direccion import *; from Equipo import *;from Fe
 from Fecha import *; from Hora import *; from List import *; from ListaDoble import *;from Nodo import *; from NodoDoble import*
 from Solicitud import *;from Usuario import *; from Administrador import *
 
+#listadobleusuarios 
+
+ListaTodos= ListaDoble(None, None, 0)
+
 #Cargue de empleados
 emp = List(None,None,0)
 with open("Textos/Empleados.txt", "r") as empleados:
@@ -18,7 +22,131 @@ with open("Textos/Password.txt", "r") as contraseñas:
     for i in contraseñas:
         x = i.split()
         pss.addLast(x)
+
+
+def añadidor():
+    #ciclo en password para saber si IV o AD
+    temp = pss.First()
+    while temp != None and temp.getNext() != None:
+        if temp.getData()[2] == "investigador":
+            #busqueda de id en el txt de empleados 
+            idBuscado = temp.getData()[0]
+            empleadoT = emp.First()
+            while empleadoT != None and (empleadoT == emp.Last() or empleadoT != emp.Last()):
+                if idBuscado == empleadoT.getData()[1]:
+                    IV = investigador(str(empleadoT.getData()[0]),int(empleadoT.getData()[1]),None,str(empleadoT.getData()[3]),int(empleadoT.getData()[4]),str(empleadoT.getData()[5]),None,)
+                    j = empleadoT.getData()[2].split()
+                    dd = j[0]
+                    mm = j[1]
+                    aa = j[2]
+                    IV.setFechaNacimiento(Fecha(dd,mm,aa))
+                    k = empleadoT.getData()[6].split()
+                    calle = k[0]
+                    nomn = k[1]
+                    brr = k[2]
+                    ciudad = k[3]
+                    edfc = k[4]
+                    apto = k[5]
+                    IV.setDir(Direccion(calle,nomn,brr,ciudad,edfc,apto))
+                    ListaTodos.addLast(IV)
+                    
+                if empleadoT == None:
+                    pass
+                else:
+                    empleadoT = empleadoT.getNext()
+        else:
+            #busqueda de id en el txt de empleados 
+            idBuscado = temp.getData()[0]
+            empleadoT = emp.First()
+            while empleadoT != None and (empleadoT == emp.Last() or empleadoT != emp.Last()):
+                if idBuscado == empleadoT.getData()[1]:
+                    AD = Administrador(str(empleadoT.getData()[0]),int(empleadoT.getData()[1]),None,str(empleadoT.getData()[3]),int(empleadoT.getData()[4]),str(empleadoT.getData()[5]),None,)
+                    j = empleadoT.getData()[2].split()
+                    dd = j[0]
+                    mm = j[1]
+                    aa = j[2]
+                    AD.setFechaNacimiento(Fecha(dd,mm,aa))
+                    k = empleadoT.getData()[6].split()
+                    calle = k[0]
+                    nomn = k[1]
+                    brr = k[2]
+                    ciudad = k[3]
+                    edfc = k[4]
+                    apto = k[5]
+                    AD.setDir(Direccion(calle,nomn,brr,ciudad,edfc,apto))
+                    ListaTodos.addLast(AD)
+                    
+                if empleadoT == None:
+                    pass
+                else:
+                    empleadoT = empleadoT.getNext()
+        
+        temp = temp.getNext()
+    #tail de password
+    if temp.getData()[2] == "investigador":
+    #busqueda de id en el txt de empleados 
+        idBuscado = temp.getData()[0]
+        empleadoT = emp.First()
+        while empleadoT != None and (empleadoT == emp.Last() or empleadoT != emp.Last()):
+            if idBuscado == empleadoT.getData()[1]:
+                IV = investigador(str(empleadoT.getData()[0]),int(empleadoT.getData()[1]),None,str(empleadoT.getData()[3]),int(empleadoT.getData()[4]),str(empleadoT.getData()[5]),None,)
+                j = empleadoT.getData()[2].split()
+                dd = j[0]
+                mm = j[1]
+                aa = j[2]
+                IV.setFechaNacimiento(Fecha(dd,mm,aa))
+                k = empleadoT.getData()[6].split()
+                calle = k[0]
+                nomn = k[1]
+                brr = k[2]
+                ciudad = k[3]
+                edfc = k[4]
+                apto = k[5]
+                IV.setDir(Direccion(calle,nomn,brr,ciudad,edfc,apto))
+                ListaTodos.addLast(IV)
+                
+            if empleadoT == None:
+                pass
+            else:
+                empleadoT = empleadoT.getNext()
     
+    if temp.getData()[2] == "Administrador":
+        #busqueda de id en el txt de empleados 
+        idBuscado = temp.getData()[0]
+        empleadoT = emp.First()
+        while empleadoT != None and (empleadoT == emp.Last() or empleadoT != emp.Last()):
+            if idBuscado == empleadoT.getData()[1]:
+                AD = Administrador(str(empleadoT.getData()[0]),int(empleadoT.getData()[1]),None,str(empleadoT.getData()[3]),int(empleadoT.getData()[4]),str(empleadoT.getData()[5]),None,)
+                j = empleadoT.getData()[2].split()
+                dd = j[0]
+                mm = j[1]
+                aa = j[2]
+                AD.setFechaNacimiento(Fecha(dd,mm,aa))
+                k = empleadoT.getData()[6].split()
+                calle = k[0]
+                nomn = k[1]
+                brr = k[2]
+                ciudad = k[3]
+                edfc = k[4]
+                apto = k[5]
+                AD.setDir(Direccion(calle,nomn,brr,ciudad,edfc,apto))
+                ListaTodos.addLast(AD)
+                
+            if empleadoT == None:
+                pass
+            else:
+                empleadoT = empleadoT.getNext()
+        
+    
+    tt = ListaTodos.first()
+    while tt != None and tt.getNext() != None:
+        print(type(tt.getData()))
+        tt = tt.getNext()
+    print(type(tt.getData()))
+    
+    
+añadidor()
+        
 print("*** Bienvenido al sistema ***")
 NumId = input("ID: ")
 contra = input("Contraseña: ")
@@ -59,6 +187,7 @@ def OpcionesAdministrador():
     print("9.Control de cambios(txt)")
     print("10.Solicitudes agregar(txt)")
     print("11.Solicitudes eliminar(txt)")
+    print("12. Salir")
     op = int(input())
     if op == 0:
         idBuscado = input("Id que busca: ")
@@ -79,6 +208,7 @@ def OpcionesAdministrador():
         n = AD.getNombre()
         id = str(AD.getId())
         AD.generarInventario(AD.getInventario(), n + " " + id)
+        OpcionesAdministrador()
     elif op == 2:
         e = int(input("Investigador(1) o Administrador(2)? : "))
         if e == 1:
@@ -136,6 +266,7 @@ def OpcionesAdministrador():
             
             with open("Textos/Password.txt", "a") as i:
                 i.write("\n"+str(AD1.getId())+" "+ str(AD1.getPss())+ " administrador")
+            
         else:
             print("Opcion Incorrecta")
             OpcionesAdministrador()
@@ -219,6 +350,8 @@ def OpcionesAdministrador():
         pass
     elif op == 11:
         pass
+    elif op == 12:
+        pass
     else:
         print("Opcion incorrecta")
         OpcionesAdministrador()
@@ -298,7 +431,7 @@ while temp != None and temp.getNext() != None:
                     edfc = k[4]
                     apto = k[5]
                     AD.setDir(Direccion(calle,nomn,brr,ciudad,edfc,apto))
-                    print("Admin encontrado", AD)
+                    """print("Admin encontrado", AD)"""
                     OpcionesAdministrador()
                 temp1 = temp1.getNext()
             #tail lista empleados
