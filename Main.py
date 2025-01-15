@@ -110,7 +110,7 @@ def añadidor():
             else:
                 empleadoT = empleadoT.getNext()
     
-    if temp.getData()[2] == "administrador":
+    else:
         #busqueda de id en el txt de empleados 
         idBuscado = temp.getData()[0]
         empleadoT = emp.First()
