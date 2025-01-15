@@ -285,6 +285,16 @@ def OpcionesAdministrador():
                 lineas = [linea for linea in lineas if str(IdErase) not in linea]
                 with open("Textos/Empleados.txt", "w") as archivo:
                     archivo.writelines(lineas)
+                
+                #Archivo txt bonito
+                with open("Textos/Empleados.txt", "r") as archivo:
+                    lineas = archivo.readlines()
+                    
+                Llineas = [linea.strip() for linea in lineas if linea.strip() != ""]
+                with open("Textos/Empleados.txt", "w") as archivoL:
+                    for linea in Llineas:
+                        archivoL.write(linea + "\n")
+                        
             temp = temp.getNext()
         if temp.getData()[1] == IdErase:
                 with open("Textos/Empleados.txt", "r") as archivo:
@@ -292,6 +302,15 @@ def OpcionesAdministrador():
                 lineas = [linea for linea in lineas if str(IdErase) not in linea]
                 with open("Textos/Empleados.txt", "w") as archivo:
                     archivo.writelines(lineas)
+                    
+                #Archivo txt bonito
+                with open("Textos/Empleados.txt", "r") as archivo:
+                    lineas = archivo.readlines()
+                    
+                Llineas = [linea.strip() for linea in lineas if linea.strip() != ""]
+                with open("Textos/Empleados.txt", "w") as archivoL:
+                    for linea in Llineas:
+                        archivoL.write(linea + "\n")
         
 
         #Elimino segun ID del txt de password
@@ -304,6 +323,16 @@ def OpcionesAdministrador():
                 lineas = [linea for linea in lineas if str(IdErase) not in linea]
                 with open("Textos/Password.txt", "w") as archivo:
                     archivo.writelines(lineas)
+                
+                #Archivo txt bonito
+                with open("Textos/Password.txt", "r") as archivo:
+                    lineas = archivo.readlines()
+                    
+                Llineas = [linea.strip() for linea in lineas if linea.strip() != ""]
+                with open("Textos/Password.txt", "w") as archivoL:
+                    for linea in Llineas:
+                        archivoL.write(linea + "\n")
+                        
             temp1 = temp1.getNext()
         if temp1.getData()[0] == IdErase:
                 with open("Textos/Password.txt", "r") as archivo:
@@ -313,16 +342,25 @@ def OpcionesAdministrador():
                 with open("Textos/Password.txt", "w") as archivo:
                     archivo.writelines(lineas)
                     
+                #Archivo txt bonito
+                with open("Textos/Password.txt", "r") as archivo:
+                    lineas = archivo.readlines()
+                    
+                Llineas = [linea.strip() for linea in lineas if linea.strip() != ""]
+                with open("Textos/Password.txt", "w") as archivoL:
+                    for linea in Llineas:
+                        archivoL.write(linea + "\n")
+                    
         rrr = ListaTodos.first()
         while rrr != None and (rrr == ListaTodos.last() or rrr != ListaTodos.last()):
             obj = rrr.getData()
             if obj.getId() == IdErase:
                 ListaTodos.remove(rrr)
-                
             if rrr == None:
                 pass
             else:
-                rrr = rrr.getNext()    
+                rrr = rrr.getNext()   
+                 
     elif op == 4:
         IdaCambiar = input("Id a cambiar: ")
         NContraseña = input("Nueva Contraseña: ")
