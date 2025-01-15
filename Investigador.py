@@ -45,64 +45,56 @@ class investigador(Usuario):
         return self.__contraseña
 
     def generarSolicitud(self, tipo, equipo = None):
+        if tipo not in ["AgregarEquipo", "EliminarEquipo"]:
+            raise ValueError("El tipo de solicitud no es válido. Use 'AgregarEquipo' o 'EliminarEquipo'.")
+
+        # Solicitar información común a ambas solicitudes
+        nombreInvestigador = input("Ingrese su nombre: ")
+        dd = input("Ingrese el día de la solicitud: ")
+        mm = input("Ingrese el mes de la solicitud: ")
+        aa = input("Ingrese el año de la solicitud: ")
+        fechita = Fecha(dd, mm, aa)
+
+        hh = input("Ingrese la hora de la solicitud: ")
+        nn = input("Ingrese el minuto de la solicitud: ")
+        ss = input("Ingrese el segundo de la solicitud: ")
+        horita = Hora(hh, nn, ss)
+
+        fechahora = FechaHora(fechita, horita)
+        estado = input("Escriba el estado de la solicitud (por ejemplo, 'Pendiente'): ")
+
+        # Validar según el tipo de solicitud
         if tipo == "AgregarEquipo":
             if equipo is None:
-                nombreInvestigador = input("Ingrese su nombre: ")
-
-                print("ingrese la fecha que realizo la solicitud: ")
-                dd = input("Ingrese el dia: ")
-                mm = input("Ingrese el mes: ")
-                aa = input("Ingrese el año: ")
-                fechita = Fecha(dd, mm, aa)
-
-                print("Ingrese la hora que realizo la solicitud: ")
-                hh = input("Ingrese hora: ")
-                nn = input("Ingrese minuto: ")
-                ss = input("Ingrese segundo: ")
-                horita = Hora(hh, nn, ss)
-
-                fechahora = FechaHora(fechita, horita)
-                estado = input("Escriba (Pendiente): ")
-
-                print(f"Se ha generado una Solicitud de tipo: {tipo}")
-                solicitudeNueva = Solicitud(nombreInvestigador, tipo, equipo, fechahora, estado)
+                print("El investigador no tiene equipos en su inventario. Se creará la solicitud con equipo vacío.")
             else:
-                raise ValueError("No se necesita un equipo para una solicitud de tipo 'AgregarEquipo'.")
-        
-        elif tipo == "EliminarEquipo":
-            if equipo is not None:
-                nombreInvestigador = input("Ingrese su nombre: ")
-                equipo = int(input("Ingrese el numero de placa de su Equipo: "))
-
+                # Verificar si el equipo ya está en el inventario
                 for pcs in self.__listaEquipos:
-                    if pcs.getNumeroPlaca == equipo:
+                    if pcs.getNumeroPlaca() == equipo:
                         equipo = pcs
-                    else:
-                        print("El equipo buscado no se encuentra.")
+                        break
+                else:
+                    raise ValueError("El equipo especificado no se encuentra en la lista de equipos disponibles.")
                 
-                print("ingrese la fecha que realizo la solicitud: ")
-                dd = input("Ingrese el dia: ")
-                mm = input("Ingrese el mes: ")
-                aa = input("Ingrese el año: ")
-                fechita = Fecha(dd, mm, aa)
-
-                print("Ingrese la hora que realizo la solicitud: ")
-                hh = input("Ingrese hora: ")
-                nn = input("Ingrese minuto: ")
-                ss = input("Ingrese segundo: ")
-                horita = Hora(hh, nn, ss)
-
-                fechahora = FechaHora(fechita, horita)
-                estado = input("Escriba (Pendiente): ")
-                solicitudeNueva = Solicitud(nombreInvestigador, tipo, equipo, fechahora, estado)
-            else:
+                if equipo in self.__inventario():
+                    raise ValueError(f"El equipo {equipo} ya pertenece al inventario del investigador.")
+        elif tipo == "EliminarEquipo":
+            if equipo is None:
                 raise ValueError("Debe proporcionar un equipo para una solicitud de tipo 'EliminarEquipo'.")
+            
+            # Verificar si el equipo existe y está asignado
+            for pcs in self.__listaEquipos:
+                if pcs.getNumeroPlaca() == equipo:
+                    equipo = pcs
+                    break
+            else:
+                raise ValueError("El equipo especificado no se encuentra en la lista de equipos disponibles.")
 
-        else:
-            raise ValueError("El tipo de solicitud no es válido. Use 'AgregarEquipo' o 'EliminarEquipo'.")
-        
-        if isinstance(solicitudeNueva, Solicitud):
-            self.__listaSolicitudes.append(solicitudeNueva)
+        # Crear la solicitud
+        solicitudNueva = Solicitud(nombreInvestigador, tipo, equipo, fechahora, estado)
+            
+        if isinstance(solicitudNueva, Solicitud):
+            self.__listaSolicitudes.append(solicitudNueva)
             print("Solicitud creada y agregada con exito")
         else:
             print("Ha ocurrido un error en el proceso")
