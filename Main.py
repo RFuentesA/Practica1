@@ -143,6 +143,7 @@ def OpcionesAdministrador():
         pass
     else:
         print("Opcion incorrecta")
+        OpcionesAdministrador()
     
 #apuntadores para la sesion iniciada, investigador o admin
 IV = None
