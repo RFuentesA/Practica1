@@ -44,37 +44,65 @@ class investigador(Usuario):
     def getPss(self):
         return self.__contraseña
 
-    def generarSolicitud(self):
-        nombreInvestigador = input("Ingrese su nombre: ")
-        tipo = input("Ingrese (Agregar Equipo) si desea adicionar un equipo a su inventario o (Quitar Equipo) si desea eliminar un equipo de su inventario: ")
-        equipo = int(input("Ingrese el numero de placa de su Equipo: "))
-        estado = input("Escriba (Pendiente): ")
+    def generarSolicitud(self, tipo, equipo = None):
+        if tipo == "AgregarEquipo":
+            if equipo is None:
+                nombreInvestigador = input("Ingrese su nombre: ")
 
-        for pcs in range(self.__listaEquipos):
-            if isinstance(self.__listaEquipos[pcs], Equipo):
-                if self.__listaEquipos[pcs].getNumeroPlaca() == equipo:
-                    equipo = pcs
+                print("ingrese la fecha que realizo la solicitud: ")
+                dd = input("Ingrese el dia: ")
+                mm = input("Ingrese el mes: ")
+                aa = input("Ingrese el año: ")
+                fechita = Fecha(dd, mm, aa)
+
+                print("Ingrese la hora que realizo la solicitud: ")
+                hh = input("Ingrese hora: ")
+                nn = input("Ingrese minuto: ")
+                ss = input("Ingrese segundo: ")
+                horita = Hora(hh, nn, ss)
+
+                fechahora = FechaHora(fechita, horita)
+                estado = input("Escriba (Pendiente): ")
+
+                print(f"Se ha generado una Solicitud de tipo: {tipo}")
+                solicitudeNueva = Solicitud(nombreInvestigador, tipo, equipo, fechahora, estado)
             else:
-                print("El equipo buscado no se encuentra.")
+                raise ValueError("No se necesita un equipo para una solicitud de tipo 'AgregarEquipo'.")
         
-        print("ingrese la fecha que realizo la solicitud: ")
-        dd = input("Ingrese el dia: ")
-        mm = input("Ingrese el mes: ")
-        aa = input("Ingrese el año: ")
-        fechita = Fecha(dd, mm, aa)
+        elif tipo == "EliminarEquipo":
+            if equipo is not None:
+                nombreInvestigador = input("Ingrese su nombre: ")
+                equipo = int(input("Ingrese el numero de placa de su Equipo: "))
 
-        print("Ingrese la hora que realizo la solicitud: ")
-        hh = input("Ingrese hora: ")
-        nn = input("Ingrese minuto: ")
-        ss = input("Ingrese segundo: ")
-        horita = Hora(hh, nn, ss)
+                for pcs in self.__listaEquipos:
+                    if pcs.getNumeroPlaca == equipo:
+                        equipo = pcs
+                    else:
+                        print("El equipo buscado no se encuentra.")
+                
+                print("ingrese la fecha que realizo la solicitud: ")
+                dd = input("Ingrese el dia: ")
+                mm = input("Ingrese el mes: ")
+                aa = input("Ingrese el año: ")
+                fechita = Fecha(dd, mm, aa)
 
-        fechahora = FechaHora(fechita, horita)
+                print("Ingrese la hora que realizo la solicitud: ")
+                hh = input("Ingrese hora: ")
+                nn = input("Ingrese minuto: ")
+                ss = input("Ingrese segundo: ")
+                horita = Hora(hh, nn, ss)
 
-        solicitudes = Solicitud(nombreInvestigador, tipo, equipo, fechahora, estado)
+                fechahora = FechaHora(fechita, horita)
+                estado = input("Escriba (Pendiente): ")
+                solicitudeNueva = Solicitud(nombreInvestigador, tipo, equipo, fechahora, estado)
+            else:
+                raise ValueError("Debe proporcionar un equipo para una solicitud de tipo 'EliminarEquipo'.")
 
-        if isinstance(solicitudes, Solicitud):
-            self.__listaSolicitudes.append(solicitudes)
+        else:
+            raise ValueError("El tipo de solicitud no es válido. Use 'AgregarEquipo' o 'EliminarEquipo'.")
+        
+        if isinstance(solicitudeNueva, Solicitud):
+            self.__listaSolicitudes.append(solicitudeNueva)
             print("Solicitud creada y agregada con exito")
         else:
             print("Ha ocurrido un error en el proceso")
