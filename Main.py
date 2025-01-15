@@ -110,7 +110,7 @@ def añadidor():
             else:
                 empleadoT = empleadoT.getNext()
     
-    if temp.getData()[2] == "Administrador":
+    if temp.getData()[2] == "administrador":
         #busqueda de id en el txt de empleados 
         idBuscado = temp.getData()[0]
         empleadoT = emp.First()
@@ -238,7 +238,9 @@ def OpcionesAdministrador():
 
             with open("Textos/Password.txt", "a") as i:
                 i.write("\n"+str(IV1.getId())+" "+ str(IV1.getPss())+ " investigador")
-                
+            ListaTodos.addLast(IV1)
+            
+                    
         elif e == 2:
             nombre = input("nombre: ")
             cedula = input("Cedula: ")
@@ -266,6 +268,7 @@ def OpcionesAdministrador():
             
             with open("Textos/Password.txt", "a") as i:
                 i.write("\n"+str(AD1.getId())+" "+ str(AD1.getPss())+ " administrador")
+            ListaTodos.addLast(AD1)
             
         else:
             print("Opcion Incorrecta")
@@ -289,6 +292,7 @@ def OpcionesAdministrador():
                 lineas = [linea for linea in lineas if str(IdErase) not in linea]
                 with open("Textos/Empleados.txt", "w") as archivo:
                     archivo.writelines(lineas)
+        
 
         #Elimino segun ID del txt de password
         temp1= pss.First()
@@ -308,6 +312,17 @@ def OpcionesAdministrador():
                 lineas = [linea for linea in lineas if str(IdErase) not in linea]
                 with open("Textos/Password.txt", "w") as archivo:
                     archivo.writelines(lineas)
+                    
+        rrr = ListaTodos.first()
+        while rrr != None and (rrr == ListaTodos.last() or rrr != ListaTodos.last()):
+            obj = rrr.getData()
+            if obj.getId() == IdErase:
+                ListaTodos.remove(rrr)
+                
+            if rrr == None:
+                pass
+            else:
+                rrr = rrr.getNext()    
     elif op == 4:
         IdaCambiar = input("Id a cambiar: ")
         NContraseña = input("Nueva Contraseña: ")
