@@ -286,15 +286,20 @@ def OpcionesAdministrador():
                 with open("Textos/Empleados.txt", "w") as archivo:
                     archivo.writelines(lineas)
                 
+                
                 #Archivo txt bonito
-                with open("Textos/Empleados.txt", "r") as archivo:
+                # Abre el archivo en modo de lectura
+                with open('Textos/Empleados.txt', 'r') as archivo:
                     lineas = archivo.readlines()
-                    
-                Llineas = [linea.strip() for linea in lineas if linea.strip() != ""]
-                with open("Textos/Empleados.txt", "w") as archivoL:
-                    for linea in Llineas:
-                        archivoL.write(linea + "\n")
-                        
+
+                # Filtra las líneas vacías
+                lineas_sin_vacias = [linea for linea in lineas if linea.strip() != '']
+
+                # Escribe las líneas sin vacías de vuelta al archivo
+                with open('Textos/Empleados.txt', 'w') as archivo_sin_vacias:
+                    archivo_sin_vacias.writelines(lineas_sin_vacias)
+
+                                        
             temp = temp.getNext()
         if temp.getData()[1] == IdErase:
                 with open("Textos/Empleados.txt", "r") as archivo:
@@ -304,13 +309,16 @@ def OpcionesAdministrador():
                     archivo.writelines(lineas)
                     
                 #Archivo txt bonito
-                with open("Textos/Empleados.txt", "r") as archivo:
+                # Abre el archivo en modo de lectura
+                with open('Textos/Empleados.txt', 'r') as archivo:
                     lineas = archivo.readlines()
-                    
-                Llineas = [linea.strip() for linea in lineas if linea.strip() != ""]
-                with open("Textos/Empleados.txt", "w") as archivoL:
-                    for linea in Llineas:
-                        archivoL.write(linea + "\n")
+
+                # Filtra las líneas vacías
+                lineas_sin_vacias = [linea for linea in lineas if linea.strip() != '']
+
+                # Escribe las líneas sin vacías de vuelta al archivo
+                with open('Textos/Empleados.txt', 'w') as archivo_sin_vacias:
+                    archivo_sin_vacias.writelines(lineas_sin_vacias)
         
 
         #Elimino segun ID del txt de password
@@ -325,13 +333,16 @@ def OpcionesAdministrador():
                     archivo.writelines(lineas)
                 
                 #Archivo txt bonito
-                with open("Textos/Password.txt", "r") as archivo:
+                # Abre el archivo en modo de lectura
+                with open('Textos/Empleados.txt', 'r') as archivo:
                     lineas = archivo.readlines()
-                    
-                Llineas = [linea.strip() for linea in lineas if linea.strip() != ""]
-                with open("Textos/Password.txt", "w") as archivoL:
-                    for linea in Llineas:
-                        archivoL.write(linea + "\n")
+
+                # Filtra las líneas vacías
+                lineas_sin_vacias = [linea for linea in lineas if linea.strip() != '']
+
+                # Escribe las líneas sin vacías de vuelta al archivo
+                with open('Textos/Empleados.txt', 'w') as archivo_sin_vacias:
+                    archivo_sin_vacias.writelines(lineas_sin_vacias)
                         
             temp1 = temp1.getNext()
         if temp1.getData()[0] == IdErase:
@@ -343,13 +354,16 @@ def OpcionesAdministrador():
                     archivo.writelines(lineas)
                     
                 #Archivo txt bonito
-                with open("Textos/Password.txt", "r") as archivo:
+                # Abre el archivo en modo de lectura
+                with open('Textos/Empleados.txt', 'r') as archivo:
                     lineas = archivo.readlines()
-                    
-                Llineas = [linea.strip() for linea in lineas if linea.strip() != ""]
-                with open("Textos/Password.txt", "w") as archivoL:
-                    for linea in Llineas:
-                        archivoL.write(linea + "\n")
+
+                # Filtra las líneas vacías
+                lineas_sin_vacias = [linea for linea in lineas if linea.strip() != '']
+
+                # Escribe las líneas sin vacías de vuelta al archivo
+                with open('Textos/Empleados.txt', 'w') as archivo_sin_vacias:
+                    archivo_sin_vacias.writelines(lineas_sin_vacias)
                     
         rrr = ListaTodos.first()
         while rrr != None and (rrr == ListaTodos.last() or rrr != ListaTodos.last()):
@@ -359,8 +373,7 @@ def OpcionesAdministrador():
             if rrr == None:
                 pass
             else:
-                rrr = rrr.getNext()   
-                 
+                rrr = rrr.getNext()         
     elif op == 4:
         IdaCambiar = input("Id a cambiar: ")
         NContraseña = input("Nueva Contraseña: ")
@@ -389,6 +402,7 @@ def OpcionesAdministrador():
                             lineas[i] = str(IdaCambiar+" "+NContraseña+" "+temp1.getData()[2])+"\n"
                 with open("Textos/Password.txt", "w") as archivo:
                     archivo.writelines(lineas)
+   
     elif op == 5:
         pass
     elif op == 6:
