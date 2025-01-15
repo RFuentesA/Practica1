@@ -7,7 +7,6 @@ from Direccion import *
 
 class investigador(Usuario):
     def __init__(self, nombre, id, ciudadNacimiento, telefono, email, contraseña, inventario = None):
-        """super().__init__(nombre, id, fechaNacimiento, ciudadNacimiento,telefono, email, dir)"""
         self.__nombre = nombre
         self.__id = id
         self.__fechaNacimiento = Fecha
@@ -23,6 +22,18 @@ class investigador(Usuario):
     
     def getInventario(self):
         return self.__inventario
+    
+    def getFechaNacimiento(self):
+        return self.__fechaNacimiento
+
+    def setFechaNacimiento(self, Fecha):
+        self.__fechaNacimiento = Fecha
+        
+    def getDir(self):
+        return self.__dir
+    
+    def setDir(self, Direccion):
+        self.__dir = Direccion
 
     def generarSolicitud(self):
         nombreInvestigador = input("Ingrese su nombre: ")
@@ -86,9 +97,5 @@ class investigador(Usuario):
         print("Ya puede visualizar la solicitud. ")
         print(leerSolicitud) #El investigador ya puede leer sus solicitudes.
 
-        def __str__(self):
-                return "Objeto creado :)"
-
-
-            
-        
+    def __str__(self):
+        return str(self.__nombre)+","+str(self.__id)+","+str(self.getFechaNacimiento())+","+str(self.__ciudadNacimiento)+","+str(self.__telefono)+","+str(self.__email)+","+str(self.getDir())

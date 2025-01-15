@@ -64,7 +64,32 @@ def OpcionesAdministrador():
         id = str(AD.getId())
         AD.generarInventario(AD.getInventario(), n + " " + id)
     elif op == 2:
-        pass
+        e = int(input("Investigador(1) o Administrador(2)? : "))
+        if e == 1:
+            nombre = input("nombre: ")
+            cedula = input("Cedula: ")
+            dd = input("Dia de cumpleaños: ")
+            mm = input("Mes de cumpleaños: ")
+            aa = input("Año de nacimiento: ")
+            f1 = Fecha(dd, mm, aa)
+            ciudadNatal = input("Ciudad natal: ")
+            tel = input("Telefono: ")
+            email = input("email: ")
+            c = input("Calle: ")
+            nmn = input("Nomenclatura: ")
+            br = input("Barrio: ")
+            cy = input("Ciudad: ")
+            edf = input("Edificio: ")
+            apTo = input("Apartamento: ")
+            ps = input("Contraseña: ")
+            d1 = Direccion(c,nmn,br,cy,edf,apTo)
+            IV1 = investigador(nombre,cedula,ciudadNatal,tel,email,ps,None)
+            IV1.setFechaNacimiento(f1)
+            IV1.setDir(d1)
+            print("Objeto creado :)")  
+            with open("Textos/Empleados.txt", "a") as archivo:
+                archivo.write("\n" + IV1.__str__())
+
     elif op == 3:
         pass
     elif op == 4:

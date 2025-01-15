@@ -27,6 +27,15 @@ class Administrador(Usuario):
     """Generar txt segun el investigador y txt de todos los investigadores ordenado de menor a mayor segun la placa"""
     """txt´s de control de cambios, solicitudes agregar y eliminar"""  
     
+    def RegistrarUsuNuevo(self):
+        pass
+    
+    def CambiarContraseña(self, id):
+        pass
+    
+    def EliminarUsuario(self, id):
+        pass
+    
     def generarInventario(self, lista, nombreArchivo):
         with open(nombreArchivo, "w") as archivo:
             for elemento in lista:
