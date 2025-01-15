@@ -155,8 +155,8 @@ contra = input("Contraseña: ")
 def OpcionesInvestigador():
     print("***********MENU***********")
     print("1.txt inventario")
-    print("2.Adicionar equipo")
-    print("3.Eliminar equipo")
+    print("2. Agregar equipo")
+    print("3. Eliminar equipo")
     print("4.txt Estado Solicitudes")
     op = int(input())
     if op == 1:
