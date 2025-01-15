@@ -90,6 +90,39 @@ def OpcionesAdministrador():
             with open("Textos/Empleados.txt", "a") as archivo:
                 archivo.write("\n" + IV1.__str__())
 
+            with open("Textos/Password.txt", "a") as i:
+                i.write("\n"+str(IV1.getId())+" "+ str(IV1.getPss())+ " investigador")
+                
+        elif e == 2:
+            nombre = input("nombre: ")
+            cedula = input("Cedula: ")
+            dd = input("Dia de cumpleaños: ")
+            mm = input("Mes de cumpleaños: ")
+            aa = input("Año de nacimiento: ")
+            f1 = Fecha(dd, mm, aa)
+            ciudadNatal = input("Ciudad natal: ")
+            tel = input("Telefono: ")
+            email = input("email: ")
+            c = input("Calle: ")
+            nmn = input("Nomenclatura: ")
+            br = input("Barrio: ")
+            cy = input("Ciudad: ")
+            edf = input("Edificio: ")
+            apTo = input("Apartamento: ")
+            ps = input("Contraseña: ")
+            d1 = Direccion(c,nmn,br,cy,edf,apTo)
+            AD1 = Administrador(nombre,cedula,ciudadNatal,tel,email,ps,None)
+            AD1.setFechaNacimiento(f1)
+            AD1.setDir(d1)
+            print("Objeto creado :)")  
+            with open("Textos/Empleados.txt", "a") as archivo:
+                archivo.write("\n" + AD1.__str__())
+            
+            with open("Textos/Password.txt", "a") as i:
+                i.write("\n"+str(AD1.getId())+" "+ str(AD1.getPss())+ " administrador")
+        else:
+            print("Opcion Incorrecta")
+            OpcionesAdministrador()
     elif op == 3:
         pass
     elif op == 4:

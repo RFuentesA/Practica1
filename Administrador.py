@@ -23,18 +23,30 @@ class Administrador(Usuario):
     def getInventario(self):
         return self.__inventario
     
+    def getFechaNacimiento(self):
+        return self.__fechaNacimiento
+
+    def setFechaNacimiento(self, Fecha):
+        self.__fechaNacimiento = Fecha
+        
+    def getDir(self):
+        return self.__dir
+    
+    def setDir(self, Direccion):
+        self.__dir = Direccion
+        
+    def getId(self):
+        return self.__id
+    
+    def setId(self, id):
+        self.__id = id
+        
+    def getPss(self):
+        return self.__contraseña
+    
     """Registrar Nuevos usuarios, cambiar contraseñas, eliminar usuarios, Solicitudes de nuevo equipo, Lo mismo para eliminar equipo"""
     """Generar txt segun el investigador y txt de todos los investigadores ordenado de menor a mayor segun la placa"""
     """txt´s de control de cambios, solicitudes agregar y eliminar"""  
-    
-    def RegistrarUsuNuevo(self):
-        pass
-    
-    def CambiarContraseña(self, id):
-        pass
-    
-    def EliminarUsuario(self, id):
-        pass
     
     def generarInventario(self, lista, nombreArchivo):
         with open(nombreArchivo, "w") as archivo:
@@ -44,4 +56,4 @@ class Administrador(Usuario):
         print(f"Lista guardada correctamente como: {nombreArchivo}")
         
     def __str__(self):
-                return "Objeto creado :)"
+        return str(self.__nombre)+","+str(self.__id)+","+str(self.getFechaNacimiento())+","+str(self.__ciudadNacimiento)+","+str(self.__telefono)+","+str(self.__email)+","+str(self.getDir())

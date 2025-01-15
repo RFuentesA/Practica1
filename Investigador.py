@@ -29,11 +29,20 @@ class investigador(Usuario):
     def setFechaNacimiento(self, Fecha):
         self.__fechaNacimiento = Fecha
         
+    def getId(self):
+        return self.__id
+    
+    def setId(self, id):
+        self.__id = id
+            
     def getDir(self):
         return self.__dir
     
     def setDir(self, Direccion):
         self.__dir = Direccion
+    
+    def getPss(self):
+        return self.__contraseña
 
     def generarSolicitud(self):
         nombreInvestigador = input("Ingrese su nombre: ")
