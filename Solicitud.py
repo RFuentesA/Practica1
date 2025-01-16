@@ -81,5 +81,20 @@ class Solicitud():
         else:
             print("Tipo de solicitud desconocido. ")
         
-        self.setEstado("Cumplida")
+        self.setEstado("Aprobada")
+    
+    def registrarCambios(self):
+        if not all([self.__nombreInvestigador, self.__tipo, self.__estado, self.__fechaSolicitud ]):
+            print("Todos los parametros deben ser llenados para continuar >:C")
+        
+        archivoCambios = "ControlDeCambios.txt"
+        registro = (f"Nombre del investigador: {self.__nombreInvestigador} | "
+                    f"Placa del equipo: {self.__equipo.getNumeroPlaca()} | " 
+                    f"Tipo de cambio: {self.__tipo} | "
+                    f"Estado: {self.__estado} | "
+                    f"Fecha y Hora: {self.__fechaSolicitud.__str__()}\n")
+
+        with open(archivoCambios, "a") as archivo:
+            archivo.write(registro)
+        print("El cambio ha sido registrado correctamente en el archivo: Control de Cambios.")
             

@@ -51,7 +51,7 @@ class Administrador(Usuario):
     """Registrar Nuevos usuarios, cambiar contraseñas, eliminar usuarios, Solicitudes de nuevo equipo, Lo mismo para eliminar equipo"""
     """Generar txt segun el investigador y txt de todos los investigadores ordenado de menor a mayor segun la placa"""
     """txt´s de control de cambios, solicitudes agregar y eliminar"""  
-    
+    #Métodos lista global
     def registrarInventarioInvestigador(self, idInvestigador, inventario):
         if idInvestigador in self.__inventarioGlobal:
             print(f"El investigador con ID {idInvestigador} ya tiene un inventario registrado.")
