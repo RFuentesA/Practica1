@@ -113,6 +113,5 @@ class Solicitud():
 
 
     def __str__(self):
-        ee = self.__equipo.__str__()
-        return str (self.__nombreInvestigador)+" "+str(self.__tipo)+" "+str(self.__estado) +" "+ str(self.__fechaSolicitud) + " " + str(self.__tipo) + " " + ee
+        return str(self.__tipo)+" "+str(self.__estado) +" "+ str(self.__fechaSolicitud) + " " + str(self.__tipo) + self.__equipo.__str__()
             

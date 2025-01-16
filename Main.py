@@ -189,7 +189,7 @@ while rsp != "Salir":
                     
                     x.getListaSolicitudes().append(x)
                     with open("Textos/SolicitudesPendientes.txt", "a") as i:
-                         i.write("\n"+str(x))
+                         i.write("\n"+k+str(x))
                     
                     OpcionesInvestigador()
                 elif respuesta == "no":
