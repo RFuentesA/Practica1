@@ -162,8 +162,45 @@ def OpcionesInvestigador():
     if op == 1:
         n = IV.getNombre()
         id = str(IV.getId())
-        IV.generarInventario(IV.getInventario(), n + " " + id)
+        IV.generarInventario(IV.getInventario(), IV.getNombre() + " " + id)
     elif op == 2:
+        print("Si elegiste esta opcion es porque necesitas agregar un equipo. Tu informacion es: ")
+        print("Tu nombre es" + IV.getNombre() + "y tu id es" + IV.getId())
+        respuesta = input("Es correcto?: ")
+        if respuesta == "Si" or "si" or "sI" or "SI":
+            print("Necesitamos la siguiente informacion del equipo: ")
+            
+            nombre = input("cual es el nombre del equipo?")
+            numeroPlaca = input("numero de la placa del equipo")
+            
+            dd = input("Dia: ")
+            mm = input("Mes:")
+            aa = input("Año: ")
+            fechaCompra = Fecha(dd, mm, aa)
+            
+            valorCompra = input("Ingresa el valor de la compra: ")
+            
+            empleadoAsociado = IV
+            
+            equipo = Equipo(nombre, numeroPlaca, fechaCompra, valorCompra, empleadoAsociado)
+            print("Objeto creado :)")  
+            with open("Textos/Solicitudes.txt", "a") as archivo:
+                archivo.write("\n" + equipo.__str__())
+
+            with open("Textos/Solicitudes.txt", "a") as i:
+                i.write("\n"+str(equipo.getNombre())+" "+ str(equipo.getNumeroPlaca())+ str(equipo.getFechaCompra) + str(equipo.getValorCompra) + str(equipo.setEmpAsociado))
+                
+            print("Necesitamos la siguiente informacion de la solicitud ")
+            nombreInvestigador = IV
+            tipo = "Agregar"
+            Equipo1 = equipo
+            
+            
+            
+            
+            
+            
+            
         pass
     elif op == 3:
         pass
@@ -336,6 +373,10 @@ def OpcionesAdministrador():
                     archivo.writelines(lineas)
    
     elif op == 5:
+        pass
+        
+        
+        
         pass
     elif op == 6:
         pass
