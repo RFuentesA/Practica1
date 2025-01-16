@@ -1,15 +1,16 @@
 from Equipo import *
 from FechaHora import *
 from Investigador import *
+from Solicitud import *
 
 class Solicitud():
-    def __init__(self, nombreInvestigador, tipo, estado, listaSolicitudes = []):
+    def __init__(self, nombreInvestigador, tipo, estado):
         self.__nombreInvestigador = nombreInvestigador
         self.__tipo = tipo
         self.__equipo = Equipo
         self.__fechaSolicitud = FechaHora
         self.__estado = estado
-        self.__listaSolicitudes = listaSolicitudes
+        self.__listaSolicitudes = []
     
     def getNombreInvestigador(self):
         return self.__nombreInvestigador
@@ -29,6 +30,9 @@ class Solicitud():
     def getFechaSolicitud(self):
         return FechaHora
     
+    def setFechaSolicitud(self, fechorita):
+        self.__fechaSolicitud = fechorita
+    
     def getEstado(self):
         return self.__estado
     
@@ -37,6 +41,9 @@ class Solicitud():
     
     def getListaSolicitudes(self):
         return self.__listaSolicitudes
+    
+    def setEquipo(self, Equipo):
+        self.__equipo = Equipo
     
     def setListaSolicitudes(self, listaSolicitudes):
         self.__listaSolicitudes = listaSolicitudes
@@ -49,13 +56,15 @@ class Solicitud():
         return cls(data["nombreInvestigador"], data["Tipo"], data["Equipo"], data["FechaSolicitud"], data["Estado"])
     
     def buscarSolicitud(self, nombreInvestigador, numeroPlaca): #Método para buscar la solicitud.
-        for solicitudBuscada in self.__listaSolicitudes: #Iteramos en la lista de las solicitudes y hacemos la comparación 
-            if solicitudBuscada.getNombreInvestigador() == nombreInvestigador and solicitudBuscada.getNumeroPlaca() == numeroPlaca:
-                return solicitudBuscada #Al encontrar la solicitud o solicitudes retornamos dicha solicitud
+        for solicitudBuscada in ls: #Iteramos en la lista de las solicitudes y hacemos la comparación
+            if isinstance(solicitudBuscada, Solicitud):
+                if solicitudBuscada.getNombreInvestigador() == nombreInvestigador and solicitudBuscada.getEquipo().getNumeroPlaca() == numeroPlaca:
+                    return solicitudBuscada #Al encontrar la solicitud o solicitudes retornamos dicha solicitud
         return None #De lo contrario retornamos vacio.
     
     def ejecutarSolicitud(self, inventarioGlobal):
         idInvestigador = investigador.getId()
+        nombreInvestigdor = investigador.getNombre()
         tipoSolicitud = self.getTipo()
         equipo = self.getEquipo()
 
@@ -71,12 +80,16 @@ class Solicitud():
                 print("El equipo ya pertenece al inventario.")
             inventario.append(equipo)
             print(f"Equipo: {equipo} se ha agregado exitosamente al inventario del investigador: {idInvestigador}. ")
+            
         
         elif tipoSolicitud == "EliminarEquipo":
             if equipo not in inventario:
                 print("El equipo no esta en el inventario. ")
             inventario.remove(equipo)
             print(f"Equipo: {equipo} eliminado del inventario del investigador: {idInvestigador}. ")
+            
+           
+                
         
         else:
             print("Tipo de solicitud desconocido. ")
@@ -97,4 +110,9 @@ class Solicitud():
         with open("Textos/"+archivoCambios, "a") as archivo:
             archivo.write(registro)
         print("El cambio ha sido registrado correctamente en el archivo: Control de Cambios.")
+
+
+    def __str__(self):
+        ee = self.__equipo.__str__()
+        return str (self.__nombreInvestigador)+" "+str(self.__tipo)+" "+str(self.__estado) +" "+ str(self.__fechaSolicitud) + " " + str(self.__tipo) + " " + ee
             

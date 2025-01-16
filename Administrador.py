@@ -95,6 +95,7 @@ class Administrador(Usuario):
         
         Solicitud.ejecutarSolicitud(self.__inventarioGlobal)
         print(f"La solicitud del tipo {solicitud.getTipo()} ha sido cumplida.")
+        
 
         with open("Textos/EquiposTodos", "a") as archivo:
             archivo.writelines(f"{solicitud}\n")

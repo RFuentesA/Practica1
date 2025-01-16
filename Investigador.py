@@ -5,6 +5,8 @@ from Solicitud import Solicitud
 import json
 from Direccion import *
 
+Ejemplo = Equipo("HpVoltro", 1529, 800000)
+
 class investigador(Usuario):
     def __init__(self, nombre, id, ciudadNacimiento, telefono, email, contraseña, inventario = None):
         self.__nombre = nombre
@@ -15,7 +17,8 @@ class investigador(Usuario):
         self.__email = email
         self.__dir = Direccion
         self.__contraseña = contraseña
-        self.__inventario = inventario if inventario is not None else [] 
+        self.__inventario = inventario if inventario is not None else [Ejemplo]
+        self.__listaSolicitudes = []
     
     def setInventario(self, inventario):
         self.__inventario = inventario
@@ -45,15 +48,21 @@ class investigador(Usuario):
         return self.__contraseña
    
     def getNombre(self):
-        return self.__nombre+ " "
+        return self.__nombre + " "
     
     def setNombre(self, nombre):
         self.__nombre = nombre
+        
+    def setListaSolicitudes(self, lista):
+        self.__listaSolicitudes = lista
+    
+    def getListaSolicitudes(self):
+        return self.getListaSolicitudes 
 
-    def generarSolicitud(self, tipo, equipo = None):
+    def generarSolicitud(self, tipo, k, equipo = None):
 
         # Solicitar información común a ambas solicitudes
-        nombreInvestigador = input("Ingrese su nombre: ")
+        nombreInvestigador = self.__nombre
         dd = input("Ingrese el día de la solicitud: ")
         mm = input("Ingrese el mes de la solicitud: ")
         aa = input("Ingrese el año de la solicitud: ")
@@ -63,25 +72,36 @@ class investigador(Usuario):
         nn = input("Ingrese el minuto de la solicitud: ")
         ss = input("Ingrese el segundo de la solicitud: ")
         horita = Hora(hh, nn, ss)
+        
+        nombre = input("Nombre del equipo: ")
+        placa = int(input("Numero de serie"))
+        valorCompra= int(input("Cuanto valio?"))
+        
+        equipo1= Equipo(nombre, placa, valorCompra)
+        equipo1.setEmpAsociado(nombreInvestigador)
+        equipo1.setFechaCompra(fechita)
+        
+        equipo = equipo1
 
         fechahora = FechaHora(fechita, horita)
-        estado = input("Escriba el estado de la solicitud (por ejemplo, 'Pendiente'): ")
+        estado = str(input("Escriba el estado de la solicitud (por ejemplo, 'Pendiente'): "))
 
         # Validar según el tipo de solicitud
         if tipo == "AgregarEquipo":
-            if equipo is None:
-                print("El investigador no tiene equipos en su inventario. Se creará la solicitud con equipo vacío.")
-            else:
-                # Verificar si el equipo ya está en el inventario
-                for pcs in self.__listaEquipos:
-                    if pcs.getNumeroPlaca() == equipo:
-                        equipo = pcs
-                        break
-                else:
-                    raise ValueError("El equipo especificado no se encuentra en la lista de equipos disponibles.")
+            if equipo != None:
+                    solicitudNueva = Solicitud(k, tipo, estado)
+                    solicitudNueva.setFechaSolicitud(fechahora)
+                    solicitudNueva.setEquipo(equipo)
+                    
+                    return solicitudNueva
+                    
+                    
+                    
+            else: 
+                equipo in self.__inventario()
+                raise ValueError(f"El equipo {equipo} ya pertenece al inventario del investigador.")
                 
-                if equipo in self.__inventario():
-                    raise ValueError(f"El equipo {equipo} ya pertenece al inventario del investigador.")
+                
         elif tipo == "EliminarEquipo":
             if equipo is None:
                 raise ValueError("Debe proporcionar un equipo para una solicitud de tipo 'EliminarEquipo'.")
@@ -92,16 +112,19 @@ class investigador(Usuario):
                     equipo = pcs
                     break
             else:
-                raise ValueError("El equipo especificado no se encuentra en la lista de equipos disponibles.")
+                solicitudNueva = Solicitud(nombreInvestigador, tipo, estado)
+                solicitudNueva.setFechaSolicitud(fechahora)
+                solicitudNueva.setEquipo(equipo1)
+                
+                solicitudNueva.getListaSolicitudes().append(solicitudNueva)
+                with open("Textos/SolicitudesPendientes.txt", "a") as i:
+                    i.write("\n"+str(equipo1.getEmpAsociado())+" "+ str(investigador.getId()) + " " + str(equipo1))
+                
 
-        # Crear la solicitud
-        solicitudNueva = Solicitud(nombreInvestigador, tipo, equipo, fechahora, estado)
+        
             
-        if isinstance(solicitudNueva, Solicitud):
-            self.__listaSolicitudes.append(solicitudNueva)
-            print("Solicitud creada y agregada con exito")
-        else:
-            print("Ha ocurrido un error en el proceso")
+        print("Solicitud creada y agregada con exito")
+        
 
     def generarInventario(self, lista, nombreArchivo):
         with open("Textos/" + nombreArchivo, "w") as archivo:
@@ -114,7 +137,7 @@ class investigador(Usuario):
         nombreInvestigador = input("Ingrese su nombre: ") #El investigador ingresa su nombre.
         numeroPlaca = int(input("Ingrese el numero de placa del Equipo: ")) #El investigador ingresa el numero de su equipo.
 
-        resultadoBusqueda = Solicitud.buscarSolicitud(nombreInvestigador, numeroPlaca) #Variable que llama al método de la clase Solicitud y luego esta apunta a una instancia de la clase Solicitud.
+        resultadoBusqueda = Solicitud.buscarSolicitud(self, nombreInvestigador, numeroPlaca) #Variable que llama al método de la clase Solicitud y luego esta apunta a una instancia de la clase Solicitud.
           
         if resultadoBusqueda != None: #Verificamos que lo que hayamos pasado no este vacio.
             with open("archivoSolicitudes.json", "w") as archivo: 
