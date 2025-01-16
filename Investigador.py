@@ -51,8 +51,6 @@ class investigador(Usuario):
         self.__nombre = nombre
 
     def generarSolicitud(self, tipo, equipo = None):
-        if tipo not in ["AgregarEquipo", "EliminarEquipo"]:
-            raise ValueError("El tipo de solicitud no es válido. Use 'AgregarEquipo' o 'EliminarEquipo'.")
 
         # Solicitar información común a ambas solicitudes
         nombreInvestigador = input("Ingrese su nombre: ")
