@@ -9,6 +9,14 @@ class Equipo():
         self.__valorCompra = valorCompra
         self.__empAsociado = Usuario
         self.__listaEquipos = listaEquipos
+        
+    def __init__(self, nombre, numeroPlaca, valorCompra):
+        self.__nombre = nombre
+        self.__numeroPlaca = numeroPlaca
+        self.__fechaCompra = Fecha
+        self.__valorCompra = valorCompra
+        self.__empAsociado = Usuario
+ 
 
     def setNombre(self, n):
         self.__nombre = n

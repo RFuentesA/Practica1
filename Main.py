@@ -165,7 +165,7 @@ def OpcionesInvestigador():
         IV.generarInventario(IV.getInventario(), IV.getNombre() + " " + id)
     elif op == 2:
         print("Si elegiste esta opcion es porque necesitas agregar un equipo. Tu informacion es: ")
-        print("Tu nombre es" + IV.getNombre() + "y tu id es" + IV.getId())
+        print("Tu nombre es" + IV.getNombre() + "y tu id es" + str(IV.getId()))
         respuesta = input("Es correcto?: ")
         if respuesta == "Si" or "si" or "sI" or "SI":
             print("Necesitamos la siguiente informacion del equipo: ")
@@ -180,9 +180,11 @@ def OpcionesInvestigador():
             
             valorCompra = input("Ingresa el valor de la compra: ")
             
-            empleadoAsociado = IV
             
-            equipo = Equipo(nombre, numeroPlaca, fechaCompra, valorCompra, empleadoAsociado)
+            equipo = Equipo(nombre, numeroPlaca, valorCompra)
+            equipo.setFechaCompra(fechaCompra)
+            equipo.setEmpAsociado(IV)
+            
             print("Objeto creado :)")  
             with open("Textos/Solicitudes.txt", "a") as archivo:
                 archivo.write("\n" + equipo.__str__())
