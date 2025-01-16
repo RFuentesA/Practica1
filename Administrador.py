@@ -16,7 +16,7 @@ class Administrador(Usuario):
         self.__dir = Direccion
         self.__contraseña = contraseña
         self.__inventario = inventario if inventario is not None else []
-        self.__listaSolicitudes = [Solicitud]
+        self.__inventarioGlobal = {}
     
     def setInventario(self, inventario):
         self.__inventario = inventario
@@ -52,6 +52,31 @@ class Administrador(Usuario):
     """Generar txt segun el investigador y txt de todos los investigadores ordenado de menor a mayor segun la placa"""
     """txt´s de control de cambios, solicitudes agregar y eliminar"""  
     
+    def registrarInventarioInvestigador(self, idInvestigador, inventario):
+        if idInvestigador in self.__inventarioGlobal:
+            print(f"El investigador con ID {idInvestigador} ya tiene un inventario registrado.")
+        else:
+            print(f"Registrando nuevo inventario para el investigador con ID {idInvestigador}.")
+        
+        self.__inventarioGlobal[idInvestigador] = inventario
+        print(f"Inventario registrado exitosamente.")
+
+    def verInventarioGlobal(self):
+        if not self.__inventarioGlobal:
+            print("El inventario global esta vacio ")
+            return
+        print("Inventario Global: ")
+        for idInvestigador, inventario in self.__inventarioGlobal.items():
+            print(f"Id investigador: {idInvestigador}")
+            print(f"Inventario: {inventario}")
+    
+    def verInventarioInvestigador(self, idInvestigador):
+        if idInvestigador in self.__inventarioGlobal:
+            print(f"Inventario del investigador: {idInvestigador}")
+            print(self.__inventarioGlobal[idInvestigador])
+        else:
+            print(f"No se encontro un inventario para el investigador {idInvestigador}")
+
     #Lista de solicitudes 
     
     def generarInventario(self, lista, nombreArchivo):
@@ -60,6 +85,14 @@ class Administrador(Usuario):
                 elemento = elemento.__str__()
                 archivo.write(f"{elemento}\n")
         print(f"Lista guardada correctamente como: {nombreArchivo}")
+    
+    def cumplirSolicitud(self, solicitud):
+        if not isinstance(solicitud, Solicitud):
+            raise TypeError("El objeto proporcionado no es un solicitud valida")
+        
+        Solicitud.ejecutarSolicitud(self.__inventarioGlobal)
+        print(f"La solicitud del tipo {solicitud.getTipo()} ha sido cumplida.")
+
         
     def __str__(self):
         return str(self.__nombre)+","+str(self.__id)+","+str(self.getFechaNacimiento())+","+str(self.__ciudadNacimiento)+","+str(self.__telefono)+","+str(self.__email)+","+str(self.getDir())

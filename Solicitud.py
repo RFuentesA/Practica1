@@ -54,8 +54,32 @@ class Solicitud():
                 return solicitudBuscada #Al encontrar la solicitud o solicitudes retornamos dicha solicitud
         return None #De lo contrario retornamos vacio.
     
-    def ejecutarSolicitud():
-        
-        pass
+    def ejecutarSolicitud(self, inventarioGlobal):
+        idInvestigador = investigador.getId()
+        tipoSolicitud = self.getTipo()
+        equipo = self.getEquipo()
 
+        if idInvestigador not in inventarioGlobal:
+            print("El investigador no tiene su inventario registrado")
+        
+        inventario = inventarioGlobal[idInvestigador]
+
+        if tipoSolicitud == "Agregar Equipo":
+            if equipo is None:
+                print("No se puede agregar algo vacio")
+            if equipo in inventario:
+                print("El equipo ya pertenece al inventario.")
+            inventario.append(equipo)
+            print(f"Equipo: {equipo} se ha agregado exitosamente al inventario del investigador: {idInvestigador}. ")
+        
+        elif tipoSolicitud == "Eliminar equipo":
+            if equipo not in inventario:
+                print("El equipo no esta en el inventario. ")
+            inventario.remove(equipo)
+            print(f"Equipo: {equipo} eliminado del inventario del investigador: {idInvestigador}. ")
+        
+        else:
+            print("Tipo de solicitud desconocido. ")
+        
+        self.setEstado("Cumplida")
             
