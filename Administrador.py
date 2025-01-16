@@ -48,6 +48,9 @@ class Administrador(Usuario):
     def getNombre (self):
         return self.__nombre
     
+    def getInventarioGlobal(self):
+        return self.__inventarioGlobal
+    
     """Registrar Nuevos usuarios, cambiar contraseñas, eliminar usuarios, Solicitudes de nuevo equipo, Lo mismo para eliminar equipo"""
     """Generar txt segun el investigador y txt de todos los investigadores ordenado de menor a mayor segun la placa"""
     """txt´s de control de cambios, solicitudes agregar y eliminar"""  
@@ -92,6 +95,10 @@ class Administrador(Usuario):
         
         Solicitud.ejecutarSolicitud(self.__inventarioGlobal)
         print(f"La solicitud del tipo {solicitud.getTipo()} ha sido cumplida.")
+
+        with open("Textos/EquiposTodos", "a") as archivo:
+            archivo.writelines(f"{solicitud}\n")
+
 
         
     def __str__(self):

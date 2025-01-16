@@ -160,9 +160,16 @@ def OpcionesInvestigador():
     print("4.txt Estado Solicitudes")
     op = int(input())
     if op == 1:
-        n = IV.getNombre()
-        id = str(IV.getId())
-        IV.generarInventario(IV.getInventario(), IV.getNombre() + " " + id)
+        id = IV.getId()
+        temp = ListaTodos.first()
+        while temp != None and (temp == ListaTodos.last() or temp != ListaTodos.last()):
+            if type(temp) == Administrador:
+                temp.verInventarioInvestigador(id)
+            if temp == None:
+                pass
+            else:
+                temp = temp.getNext() 
+
     elif op == 2:
         print("Si elegiste esta opcion es porque deseas agregar un equipo. Tu informacion es: ")
         print("Tu nombre es" + IV.getNombre() + "y tu id es" + str(IV.getId()))
@@ -217,7 +224,8 @@ def OpcionesAdministrador():
     print("9.Control de cambios(txt)")
     print("10.Solicitudes agregar(txt)")
     print("11.Solicitudes eliminar(txt)")
-    print("12. Salir")
+    print("12. Agregar Equipo Administrador")
+    print("13. Salir")
     op = int(input())
     if op == 0:
         idBuscado = input("Id que busca: ")
@@ -235,9 +243,8 @@ def OpcionesAdministrador():
                 p += str(temp.getData()[x])+" "
             print(p)
     elif op == 1:
-        n = AD.getNombre()
         id = str(AD.getId())
-        AD.generarInventario(AD.getInventario(), n + " " + id)
+        AD.verInventarioInvestigador(id)
         OpcionesAdministrador()
     elif op == 2:
         e = int(input("Investigador(1) o Administrador(2)? : "))
@@ -370,14 +377,22 @@ def OpcionesAdministrador():
         #1. Iterar sobre las solicitudes
         for solicidtudRecorrida in Solicitud.getListaSolicitudes():
             solicitudes = solicidtudRecorrida
+        
+
         if isinstance(solicitudes, Solicitud):
-            solicitudes.ejecutarSolicitud()
+            solicitudes.ejecutarSolicitud(AD.getInventarioGlobal())
         
-        
-        
-        pass
     elif op == 6:
-        pass
+        print("Si ha escogido esta opcion es porque desea cumplir una solicitud de tipo eliminar. ")
+        #1. Iterar sobre las solicitudes
+        for solicidtudRecorrida in Solicitud.getListaSolicitudes():
+            solicitudes = solicidtudRecorrida
+        
+        
+        if isinstance(solicitudes, Solicitud):
+            solicitudes.ejecutarSolicitud(AD.getInventarioGlobal())
+
+
     elif op == 7:
         IdIv = str(input("Identificacion: "))
         temp = ListaTodos.first()
@@ -393,14 +408,34 @@ def OpcionesAdministrador():
                 temp = temp.getNext()
    
     elif op == 8:
-        pass
+        print("Si escogio esta opcion es porque desea ver el inventario general. ")            
+
+        x = AD.getInventarioGlobal()
+        with open("Textos/InventarioGeneral.txt", "a") as archivo:
+            for clave, valor in x.items():
+                for x in valor:
+                    archivo.write(x.__str__())
+    
     elif op == 9:
-        pass
+        Solicitud.registrarCambios()
     elif op == 10:
         pass
     elif op == 11:
         pass
     elif op == 12:
+        name = input("nombre: ")
+        plque = input("#placa: ")
+        vc = input("valor de compra: ")
+        dia = input("Ingrese el día de la solicitud: ")
+        mes = input("Ingrese el mes de la solicitud: ")
+        año = input("Ingrese el año de la solicitud: ")
+        fechita = Fecha(dia, mes, año)
+        e1 =Equipo(name, plque, vc)
+        e1.setFechaCompra(fechita)
+        e1.setEmpAsociado(AD)
+
+        AD.getInventario().append(e1)
+    elif op == 13:
         pass
     else:
         print("Opcion incorrecta")

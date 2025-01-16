@@ -64,7 +64,7 @@ class Solicitud():
         
         inventario = inventarioGlobal[idInvestigador]
 
-        if tipoSolicitud == "Agregar Equipo":
+        if tipoSolicitud == "AgregarEquipo":
             if equipo is None:
                 print("No se puede agregar algo vacio")
             if equipo in inventario:
@@ -72,7 +72,7 @@ class Solicitud():
             inventario.append(equipo)
             print(f"Equipo: {equipo} se ha agregado exitosamente al inventario del investigador: {idInvestigador}. ")
         
-        elif tipoSolicitud == "Eliminar equipo":
+        elif tipoSolicitud == "EliminarEquipo":
             if equipo not in inventario:
                 print("El equipo no esta en el inventario. ")
             inventario.remove(equipo)
@@ -94,7 +94,7 @@ class Solicitud():
                     f"Estado: {self.__estado} | "
                     f"Fecha y Hora: {self.__fechaSolicitud.__str__()}\n")
 
-        with open(archivoCambios, "a") as archivo:
+        with open("Textos/"+archivoCambios, "a") as archivo:
             archivo.write(registro)
         print("El cambio ha sido registrado correctamente en el archivo: Control de Cambios.")
             

@@ -52,4 +52,4 @@ class Equipo():
         return self.__listaEquipos 
     
     def __str__(self):
-        return str(self.__nombre) +" "+ str(self.__numeroPlaca) +" "+ str(self.__fechaCompra) +" "+ str(self.__valorCompra)
+        return str(self.__empAsociado.getNombre())+" "+str(self.__empAsociado.getId())+" "+str(self.__nombre) +" "+ str(self.__numeroPlaca) +" "+ str(self.__fechaCompra) +" "+ str(self.__valorCompra)
