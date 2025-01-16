@@ -196,7 +196,9 @@ def OpcionesInvestigador():
             print("Opcion equivocada.") 
             
     elif op == 4:
-        pass
+        print("Si usted ha escogido esta opcion es porque quiere ver sus solicitudes junto al estado de estas")
+        print("Tu nombre es" + IV.getNombre())
+        investigador.verSolicitudes()
         
     else:
         print("Opcion incorrecta")

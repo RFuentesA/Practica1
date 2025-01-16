@@ -113,7 +113,7 @@ class investigador(Usuario):
         print(f"Lista guardada correctamente como: {nombreArchivo}")
     
     def verSolicitudes(self): #Método para mostrar las solicitudes que tenga el investigador.
-        nombreInvestigador = self.__nombre #Damos el nombre del investigador.
+        nombreInvestigador = input("Ingrese su nombre: ") #El investigador ingresa su nombre.
         numeroPlaca = int(input("Ingrese el numero de placa del Equipo: ")) #El investigador ingresa el numero de su equipo.
 
         resultadoBusqueda = Solicitud.buscarSolicitud(nombreInvestigador, numeroPlaca) #Variable que llama al método de la clase Solicitud y luego esta apunta a una instancia de la clase Solicitud.
