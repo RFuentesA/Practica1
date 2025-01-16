@@ -43,6 +43,12 @@ class investigador(Usuario):
     
     def getPss(self):
         return self.__contraseña
+    
+    def getNombre(self):
+        return self.__nombre
+    
+    def setNombre(self, nombre):
+        self.__nombre = nombre
 
     def generarSolicitud(self, tipo, equipo = None):
         if tipo not in ["AgregarEquipo", "EliminarEquipo"]:
@@ -100,7 +106,7 @@ class investigador(Usuario):
             print("Ha ocurrido un error en el proceso")
 
     def generarInventario(self, lista, nombreArchivo):
-        with open(nombreArchivo, "w") as archivo:
+        with open("Textos/" + nombreArchivo, "w") as archivo:
             for elemento in lista:
                 elemento = elemento.__str__()
                 archivo.write(f"{elemento}\n")

@@ -340,7 +340,19 @@ def OpcionesAdministrador():
     elif op == 6:
         pass
     elif op == 7:
-        pass
+        IdIv = str(input("Identificacion: "))
+        temp = ListaTodos.first()
+        while temp != None and (temp == ListaTodos.last() or temp != ListaTodos.last()):
+            if IdIv == str(temp.getData().getId()):
+                n = temp.getData().getNombre()
+                id = str(temp.getData().getId())
+                temp.getData().generarInventario(temp.getData().getInventario(), str(n+" "+id))
+                
+            if temp == None:
+                pass
+            else:
+                temp = temp.getNext()
+   
     elif op == 8:
         pass
     elif op == 9:
