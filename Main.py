@@ -274,96 +274,26 @@ def OpcionesAdministrador():
             print("Opcion Incorrecta")
             OpcionesAdministrador()
     elif op == 3:
-        IdErase = input("Id a eliminar: ")
-        temp = emp.First()
-        #Elimino segun ID del txt de empleados
-        while temp !=  None and temp.getNext() != None:
-            if temp.getData()[1] == IdErase:
-                with open("Textos/Empleados.txt", "r") as archivo:
-                    lineas = archivo.readlines()
-                    
-                lineas = [linea for linea in lineas if str(IdErase) not in linea]
-                with open("Textos/Empleados.txt", "w") as archivo:
-                    archivo.writelines(lineas)
-                
-                
-                #Archivo txt bonito
-                # Abre el archivo en modo de lectura
-                with open('Textos/Empleados.txt', 'r') as archivo:
-                    lineas = archivo.readlines()
-
-                # Filtra las líneas vacías
-                lineas_sin_vacias = [linea for linea in lineas if linea.strip() != '']
-
-                # Escribe las líneas sin vacías de vuelta al archivo
-                with open('Textos/Empleados.txt', 'w') as archivo_sin_vacias:
-                    archivo_sin_vacias.writelines(lineas_sin_vacias)
-
-                                        
-            temp = temp.getNext()
-        if temp.getData()[1] == IdErase:
-                with open("Textos/Empleados.txt", "r") as archivo:
-                    lineas = archivo.readlines()
-                lineas = [linea for linea in lineas if str(IdErase) not in linea]
-                with open("Textos/Empleados.txt", "w") as archivo:
-                    archivo.writelines(lineas)
-                    
-                #Archivo txt bonito
-                # Abre el archivo en modo de lectura
-                with open('Textos/Empleados.txt', 'r') as archivo:
-                    lineas = archivo.readlines()
-
-                # Filtra las líneas vacías
-                lineas_sin_vacias = [linea for linea in lineas if linea.strip() != '']
-
-                # Escribe las líneas sin vacías de vuelta al archivo
-                with open('Textos/Empleados.txt', 'w') as archivo_sin_vacias:
-                    archivo_sin_vacias.writelines(lineas_sin_vacias)
-        
-
+        IdErase = input("Id a eliminar: ")            
+        with open("Textos/Empleados.txt", "r") as archivo:
+            lineas = archivo.readlines()
+            for i, linea in enumerate(lineas):
+                if IdErase in linea:
+                    del lineas[i]
+                    break
+        with open("Textos/Empleados.txt", "w") as archivo:
+                    archivo.writelines(linea for linea in lineas if linea.strip())
+            
+            
         #Elimino segun ID del txt de password
-        temp1= pss.First()
-        while temp1 != None and temp1.getNext() != None:
-            if temp1.getData()[0] == IdErase:
-                with open("Textos/Password.txt", "r") as archivo:
-                    lineas = archivo.readlines()
-                    
-                lineas = [linea for linea in lineas if str(IdErase) not in linea]
-                with open("Textos/Password.txt", "w") as archivo:
-                    archivo.writelines(lineas)
-                
-                #Archivo txt bonito
-                # Abre el archivo en modo de lectura
-                with open('Textos/Empleados.txt', 'r') as archivo:
-                    lineas = archivo.readlines()
-
-                # Filtra las líneas vacías
-                lineas_sin_vacias = [linea for linea in lineas if linea.strip() != '']
-
-                # Escribe las líneas sin vacías de vuelta al archivo
-                with open('Textos/Empleados.txt', 'w') as archivo_sin_vacias:
-                    archivo_sin_vacias.writelines(lineas_sin_vacias)
-                        
-            temp1 = temp1.getNext()
-        if temp1.getData()[0] == IdErase:
-                with open("Textos/Password.txt", "r") as archivo:
-                    lineas = archivo.readlines()
-                    
-                lineas = [linea for linea in lineas if str(IdErase) not in linea]
-                with open("Textos/Password.txt", "w") as archivo:
-                    archivo.writelines(lineas)
-                    
-                #Archivo txt bonito
-                # Abre el archivo en modo de lectura
-                with open('Textos/Empleados.txt', 'r') as archivo:
-                    lineas = archivo.readlines()
-
-                # Filtra las líneas vacías
-                lineas_sin_vacias = [linea for linea in lineas if linea.strip() != '']
-
-                # Escribe las líneas sin vacías de vuelta al archivo
-                with open('Textos/Empleados.txt', 'w') as archivo_sin_vacias:
-                    archivo_sin_vacias.writelines(lineas_sin_vacias)
+        with open("Textos/Password.txt", "r") as archivo:
+            lineas = archivo.readlines()
+            for i, linea in enumerate(lineas):
+                if IdErase in linea:
+                    del lineas[i]
+                    break
+        with open("Textos/Password.txt", "w") as archivo:
+                    archivo.writelines(linea for linea in lineas if linea.strip())
                     
         rrr = ListaTodos.first()
         while rrr != None and (rrr == ListaTodos.last() or rrr != ListaTodos.last()):
@@ -373,7 +303,9 @@ def OpcionesAdministrador():
             if rrr == None:
                 pass
             else:
-                rrr = rrr.getNext()         
+                rrr = rrr.getNext() 
+                    
+                        
     elif op == 4:
         IdaCambiar = input("Id a cambiar: ")
         NContraseña = input("Nueva Contraseña: ")
