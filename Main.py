@@ -366,7 +366,12 @@ def OpcionesAdministrador():
                     archivo.writelines(lineas)
    
     elif op == 5:
-        pass
+        print("Si ha escogido esta opcion es porque desea cumplir una solicitud de tipo agregar. ")
+        #1. Iterar sobre las solicitudes
+        for solicidtudRecorrida in Solicitud.getListaSolicitudes():
+            solicitudes = solicidtudRecorrida
+        if isinstance(solicitudes, Solicitud):
+            solicitudes.ejecutarSolicitud()
         
         
         
