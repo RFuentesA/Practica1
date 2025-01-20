@@ -149,7 +149,9 @@ while rsp != "Salir":
             
             
         añadidor()
-                
+        
+        listaSolicitudes = []
+
         print("*** Bienvenido al sistema ***")
         NumId = input("ID: ")
         contra = input("Contraseña: ")
@@ -182,14 +184,12 @@ while rsp != "Salir":
                 if respuesta == "si":
                     tipoSolicitud = "AgregarEquipo"
                     
-                    
-                    
                     x = IV.generarSolicitud(tipoSolicitud, None)
                     
-                    
-                    x.getListaSolicitudes().append(x)
+                    listaSolicitudes.append(x)
                     with open("Textos/SolicitudesPendientes.txt", "a") as i:
                          i.write("\n"+k+str(x))
+                    print(listaSolicitudes[0].__str__)
                     
                     OpcionesInvestigador()
                 elif respuesta == "no":
@@ -395,6 +395,7 @@ while rsp != "Salir":
                 print("Si ha escogido esta opcion es porque desea cumplir una solicitud de tipo agregar. ")
                 #1. Iterar sobre las solicitudes
                 
+
                 
             elif op == 6:
                 print("Si ha escogido esta opcion es porque desea cumplir una solicitud de tipo eliminar. ")

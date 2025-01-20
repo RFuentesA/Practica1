@@ -18,7 +18,7 @@ class investigador(Usuario):
         self.__dir = Direccion
         self.__contraseña = contraseña
         self.__inventario = inventario if inventario is not None else [Ejemplo]
-        self.__listaSolicitudes = []
+       # self.__listaSolicitudes = []
     
     def setInventario(self, inventario):
         self.__inventario = inventario
@@ -74,8 +74,8 @@ class investigador(Usuario):
         horita = Hora(hh, nn, ss)
         
         nombre = input("Nombre del equipo: ")
-        placa = int(input("Numero de serie"))
-        valorCompra= int(input("Cuanto valio?"))
+        placa = int(input("Numero de serie: "))
+        valorCompra= int(input("Costo del equipo: "))
         
         equipo1= Equipo(nombre, placa, valorCompra)
         equipo1.setEmpAsociado(nombreInvestigador)

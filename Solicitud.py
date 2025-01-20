@@ -9,7 +9,6 @@ class Solicitud():
         self.__equipo = Equipo
         self.__fechaSolicitud = FechaHora
         self.__estado = estado
-        self.__listaSolicitudes = []
     
     def getNombreInvestigador(self):
         return self.__nombreInvestigador
@@ -38,28 +37,28 @@ class Solicitud():
     def setEstado(self, estado):
         self.__estado = estado
     
-    def getListaSolicitudes(self):
-        return self.__listaSolicitudes
+    #def getListaSolicitudes(self):
+    #   return self.__listaSolicitudes
     
     def setEquipo(self, Equipo):
         self.__equipo = Equipo
     
-    def setListaSolicitudes(self, listaSolicitudes):
-        self.__listaSolicitudes = listaSolicitudes
+    #def setListaSolicitudes(self, listaSolicitudes):
+    #    self.__listaSolicitudes = listaSolicitudes
     
-    def paraDictar(self): #Creamos el diccionario que contenga los atributos de las solicitudes.
-        return {"nombreInvestigador": self.__nombreInvestigador, "Tipo": self.__tipo, "Equipo": self.__equipo, "FechaSolicitud": self.__fechaSolicitud, "Estado": self.__estado}
+    #def paraDictar(self): #Creamos el diccionario que contenga los atributos de las solicitudes.
+    #    return {"nombreInvestigador": self.__nombreInvestigador, "Tipo": self.__tipo, "Equipo": self.__equipo, "FechaSolicitud": self.__fechaSolicitud, "Estado": self.__estado}
     
-    @classmethod
-    def delDiccionario(cls, data): #Método que convierte el objeto en un diccionario.
-        return cls(data["nombreInvestigador"], data["Tipo"], data["Equipo"], data["FechaSolicitud"], data["Estado"])
+    #@classmethod
+    #def delDiccionario(cls, data): #Método que convierte el objeto en un diccionario.
+    #    return cls(data["nombreInvestigador"], data["Tipo"], data["Equipo"], data["FechaSolicitud"], data["Estado"])
     
-    def buscarSolicitud(self, nombreInvestigador, numeroPlaca): #Método para buscar la solicitud.
-        for solicitudBuscada in self.__listaSolicitudes: #Iteramos en la lista de las solicitudes y hacemos la comparación
-            if isinstance(solicitudBuscada, Solicitud):
-                if solicitudBuscada.getNombreInvestigador() == nombreInvestigador and solicitudBuscada.getEquipo().getNumeroPlaca() == numeroPlaca:
-                    return solicitudBuscada #Al encontrar la solicitud o solicitudes retornamos dicha solicitud
-        return None #De lo contrario retornamos vacio.
+    #def buscarSolicitud(self, nombreInvestigador, numeroPlaca): #Método para buscar la solicitud.
+    #    for solicitudBuscada in self.__listaSolicitudes: #Iteramos en la lista de las solicitudes y hacemos la comparación
+    #        if isinstance(solicitudBuscada, Solicitud):
+    #            if solicitudBuscada.getNombreInvestigador() == nombreInvestigador and solicitudBuscada.getEquipo().getNumeroPlaca() == numeroPlaca:
+    #                return solicitudBuscada #Al encontrar la solicitud o solicitudes retornamos dicha solicitud
+    #    return None #De lo contrario retornamos vacio.
     
     def ejecutarSolicitud(self, inventarioGlobal):
         idInvestigador = investigador.getId()
@@ -87,9 +86,6 @@ class Solicitud():
             inventario.remove(equipo)
             print(f"Equipo: {equipo} eliminado del inventario del investigador: {idInvestigador}. ")
             
-           
-                
-        
         else:
             print("Tipo de solicitud desconocido. ")
         
@@ -113,10 +109,3 @@ class Solicitud():
 
     def __str__(self):
         return str(self.__tipo)+" "+str(self.__estado) +" "+ str(self.__fechaSolicitud) + " " + str(self.__tipo) + self.__equipo.__str__()
-    
-    soli = Solicitud(None, None, None)
-
-    print(soli.__listaSolicitudes)
-    
-    
-            

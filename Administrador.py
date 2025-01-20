@@ -16,7 +16,7 @@ class Administrador(Usuario):
         self.__dir = Direccion
         self.__contraseña = contraseña
         self.__inventario = inventario if inventario is not None else []
-        self.__inventarioGlobal = {}
+        #self.__inventarioGlobal = {}
     
     def setInventario(self, inventario):
         self.__inventario = inventario
@@ -55,7 +55,7 @@ class Administrador(Usuario):
     """Generar txt segun el investigador y txt de todos los investigadores ordenado de menor a mayor segun la placa"""
     """txt´s de control de cambios, solicitudes agregar y eliminar"""  
     #Métodos lista global
-    def registrarInventarioInvestigador(self, idInvestigador, inventario):
+    """def registrarInventarioInvestigador(self, idInvestigador, inventario):
         if idInvestigador in self.__inventarioGlobal:
             print(f"El investigador con ID {idInvestigador} ya tiene un inventario registrado.")
         else:
@@ -78,7 +78,7 @@ class Administrador(Usuario):
             print(f"Inventario del investigador: {idInvestigador}")
             print(self.__inventarioGlobal[idInvestigador])
         else:
-            print(f"No se encontro un inventario para el investigador {idInvestigador}")
+            print(f"No se encontro un inventario para el investigador {idInvestigador}")"""
 
     #Lista de solicitudes 
     
