@@ -25,7 +25,7 @@ while rsp != "Salir":
                 x = i.split()
                 pss.addLast(x)
 
-        Ejemplo = Equipo("HpVoltro", 1529, 800000)
+        #Ejemplo = Equipo("HpVoltro", 1529, 800000)
 
         def añadidor():
             #ciclo en password para saber si IV o AD
@@ -189,7 +189,7 @@ while rsp != "Salir":
                     listaSolicitudes.append(x)
                     with open("Textos/SolicitudesPendientes.txt", "a") as i:
                          i.write("\n"+k+str(x))
-                    print(listaSolicitudes[0].__str__)
+                    ##print(listaSolicitudes[0].__str__)
                     
                     OpcionesInvestigador()
                 elif respuesta == "no":
@@ -394,6 +394,7 @@ while rsp != "Salir":
             elif op == 5:
                 print("Si ha escogido esta opcion es porque desea cumplir una solicitud de tipo agregar. ")
                 #1. Iterar sobre las solicitudes
+                
                 
 
                 

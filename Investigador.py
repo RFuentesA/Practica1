@@ -84,14 +84,14 @@ class investigador(Usuario):
         equipo = equipo1
 
         fechahora = FechaHora(fechita, horita)
-        estado = str(input("Escriba el estado de la solicitud (por ejemplo, 'Pendiente'): "))
+        estado = str(input("Escriba el estado de la solicitud, escriba Pendiente o pendiente: "))
 
         # Validar según el tipo de solicitud
         if tipo == "AgregarEquipo":
             if equipo != None:
                     solicitudNueva = Solicitud(k, tipo, estado)
                     solicitudNueva.setFechaSolicitud(fechahora)
-                    solicitudNueva.setEquipo(equipo)
+                    solicitudNueva.setEquipo(None)
                     
                     return solicitudNueva
                     
@@ -107,25 +107,16 @@ class investigador(Usuario):
                 raise ValueError("Debe proporcionar un equipo para una solicitud de tipo 'EliminarEquipo'.")
             
             # Verificar si el equipo existe y está asignado
-            for pcs in self.__listaEquipos:
-                if pcs.getNumeroPlaca() == equipo:
-                    equipo = pcs
-                    break
             else:
                 solicitudNueva = Solicitud(nombreInvestigador, tipo, estado)
                 solicitudNueva.setFechaSolicitud(fechahora)
                 solicitudNueva.setEquipo(equipo1)
                 
-                solicitudNueva.getListaSolicitudes().append(solicitudNueva)
-                with open("Textos/SolicitudesPendientes.txt", "a") as i:
-                    i.write("\n"+str(equipo1.getEmpAsociado())+" "+ str(investigador.getId()) + " " + str(equipo1))
-                
-
+                #solicitudNueva.getListaSolicitudes().append(solicitudNueva)
+                #with open("Textos/SolicitudesPendientes.txt", "a") as i:
+                #    i.write("\n"+str(equipo1.getEmpAsociado())+" "+ str(investigador.getId()) + " " + str(equipo1))
+            print("Solicitud creada y agregada con exito")
         
-            
-        print("Solicitud creada y agregada con exito")
-        
-
     def generarInventario(self, lista, nombreArchivo):
         with open("Textos/" + nombreArchivo, "w") as archivo:
             for elemento in lista:
