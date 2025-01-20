@@ -1,7 +1,6 @@
 from Equipo import *
 from FechaHora import *
 from Investigador import *
-from Solicitud import *
 
 class Solicitud():
     def __init__(self, nombreInvestigador, tipo, estado):
@@ -56,7 +55,7 @@ class Solicitud():
         return cls(data["nombreInvestigador"], data["Tipo"], data["Equipo"], data["FechaSolicitud"], data["Estado"])
     
     def buscarSolicitud(self, nombreInvestigador, numeroPlaca): #Método para buscar la solicitud.
-        for solicitudBuscada in ls: #Iteramos en la lista de las solicitudes y hacemos la comparación
+        for solicitudBuscada in self.__listaSolicitudes: #Iteramos en la lista de las solicitudes y hacemos la comparación
             if isinstance(solicitudBuscada, Solicitud):
                 if solicitudBuscada.getNombreInvestigador() == nombreInvestigador and solicitudBuscada.getEquipo().getNumeroPlaca() == numeroPlaca:
                     return solicitudBuscada #Al encontrar la solicitud o solicitudes retornamos dicha solicitud
@@ -114,4 +113,10 @@ class Solicitud():
 
     def __str__(self):
         return str(self.__tipo)+" "+str(self.__estado) +" "+ str(self.__fechaSolicitud) + " " + str(self.__tipo) + self.__equipo.__str__()
+    
+    soli = Solicitud(None, None, None)
+
+    print(soli.__listaSolicitudes)
+    
+    
             

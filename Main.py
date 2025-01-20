@@ -394,12 +394,7 @@ while rsp != "Salir":
             elif op == 5:
                 print("Si ha escogido esta opcion es porque desea cumplir una solicitud de tipo agregar. ")
                 #1. Iterar sobre las solicitudes
-                for solicidtudRecorrida in Solicitud.getListaSolicitudes(self):
-                    solicitudes = solicidtudRecorrida
                 
-
-                if isinstance(solicitudes, Solicitud):
-                    solicitudes.ejecutarSolicitud(AD.getInventarioGlobal())
                 
             elif op == 6:
                 print("Si ha escogido esta opcion es porque desea cumplir una solicitud de tipo eliminar. ")
