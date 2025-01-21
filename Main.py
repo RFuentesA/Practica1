@@ -6,7 +6,7 @@ from Solicitud import *;from Usuario import *; from Administrador import *
 rsp = " "
 while rsp != "Salir":
     
-        ListaTodos= ListaDoble(None, None, 0)
+        ListaTodos = ListaDoble(None, None, 0)
 
         #Cargue de empleados
         emp = List(None,None,0)
@@ -396,7 +396,7 @@ while rsp != "Salir":
         
             elif op == 5:
                 print("Si ha escogido esta opcion es porque desea cumplir una solicitud de tipo agregar. ")
-                #1. Iterar sobre las solicitudes
+                #1. Creamos una instancia de la clase equipo.
                 print("Ingrese los datos del equipo que va a agregar. ")
                 nombreEquipo = input("Ingrese el nombre del equipo: ")
                 numeroPlaca = int(input("Ingresa el numero de placa del equipo, minimo ocho digitos: "))
@@ -407,29 +407,31 @@ while rsp != "Salir":
                 año = input("Ingrese el año que compro el equipo: ")
                 fechaCompraEquipo = Fecha(dia, mes, año)
                 
-                temp = ListaTodos.first()
-                nombreIV = None
+                temp = ListaTodos.first() 
+                nombreIV = None 
                 while temp != None and (temp == ListaDoble.last() or temp != ListaTodos.last()):
                     if type(temp.getData()) == investigador:
-                        nombreIV = temp.getData().getNombre()
-                    if temp == None:
+                        investigadorSolicitado = temp.getData()
+                        nombreIV = investigadorSolicitado.getNombre()
+                        for investigadorBuscado in listaSolicitudes:
+                            if isinstance(investigadorBuscado, Solicitud):
+                                if investigadorBuscado.getNombreInvestigador() == nombreIV: 
+                                    inventarioInvestigador = investigadorSolicitado.getInventario()
+                    elif temp == None:
                         pass
                     else:
                         temp = temp.getNext()
                 
-                for investigadorBuscado in listaSolicitudes:
-                    
                 #Equipo.setEmpAsociado(nameInvestigador)
                 equipoAgregado = Equipo(nombreEquipo, numeroPlaca, costoEquipo)
                 equipoAgregado.setFechaCompra(fechaCompraEquipo)
-                equipoAgregado.setEmpAsociado(IV)
+                equipoAgregado.setEmpAsociado(investigadorSolicitado)
                 
-                for solicitudesAgregadas in listaSolicitudes:
-                    
-                    
+                investigadorSolicitado.setInventario(equipoAgregado)
+                print(inventarioInvestigador)
                 
                 
-
+                
                 
             elif op == 6:
                 print("Si ha escogido esta opcion es porque desea cumplir una solicitud de tipo eliminar. ")
