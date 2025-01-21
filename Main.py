@@ -397,6 +397,36 @@ while rsp != "Salir":
             elif op == 5:
                 print("Si ha escogido esta opcion es porque desea cumplir una solicitud de tipo agregar. ")
                 #1. Iterar sobre las solicitudes
+                print("Ingrese los datos del equipo que va a agregar. ")
+                nombreEquipo = input("Ingrese el nombre del equipo: ")
+                numeroPlaca = int(input("Ingresa el numero de placa del equipo, minimo ocho digitos: "))
+                costoEquipo = int(input("Ingrese el costo del equipo: "))
+                
+                dia = input("Ingrese el dia que compro el equipo: ")
+                mes = input("Ingrese el mes que compro el equipo: ")
+                año = input("Ingrese el año que compro el equipo: ")
+                fechaCompraEquipo = Fecha(dia, mes, año)
+                
+                temp = ListaTodos.first()
+                nombreIV = None
+                while temp != None and (temp == ListaDoble.last() or temp != ListaTodos.last()):
+                    if type(temp.getData()) == investigador:
+                        nombreIV = temp.getData().getNombre()
+                    if temp == None:
+                        pass
+                    else:
+                        temp = temp.getNext()
+                
+                for investigadorBuscado in listaSolicitudes:
+                    
+                #Equipo.setEmpAsociado(nameInvestigador)
+                equipoAgregado = Equipo(nombreEquipo, numeroPlaca, costoEquipo)
+                equipoAgregado.setFechaCompra(fechaCompraEquipo)
+                equipoAgregado.setEmpAsociado(IV)
+                
+                for solicitudesAgregadas in listaSolicitudes:
+                    
+                    
                 
                 
 
