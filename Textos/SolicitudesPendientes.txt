@@ -7,3 +7,6 @@ Maria AgregarEquipo Pendiente 20 01 2025 4 05 00 AgregarEquipoHP-Pavilon 1234 20
 Maria AgregarEquipo Pendiente 10 05 2003 12 00 00 AgregarEquipoThinkPad-LS2003 987 10 05 2003 1000
 Maria AgregarEquipo Pendiente 26 03 2003 12 00 00 AgregarEquipoAsus RFZ700 124578 26 03 2003 2500
 Maria AgregarEquipo pendiente 17 08 2006 12 00 00 AgregarEquipoLenovoXp 0 17 08 2006 1200
+Maria None
+Maria None
+Maria Agregar Equipo pendiente 11 11 2011 1 00 00 Agregar EquipoNone

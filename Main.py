@@ -151,6 +151,9 @@ while rsp != "Salir":
         añadidor()
         
         listaSolicitudes = []
+        listaEquipos = []
+
+        
 
         print("*** Bienvenido al sistema ***")
         NumId = input("ID: ")
@@ -182,20 +185,20 @@ while rsp != "Salir":
                 print("Tu nombre es " + IV.getNombre() + " y tu id es " + str(IV.getId()))
                 respuesta = input("Es correcto? Escriba Si o No: ").lower()
                 if respuesta == "si":
-                    tipoSolicitud = "AgregarEquipo"
+                    tipoSolicitud = "Agregar Equipo"
                     
                     x = IV.generarSolicitud(tipoSolicitud, None)
                     
                     listaSolicitudes.append(x)
                     with open("Textos/SolicitudesPendientes.txt", "a") as i:
                          i.write("\n"+k+str(x))
-                    ##print(listaSolicitudes[0].__str__)
+                    #print(listaSolicitudes[0].__str__)
                     
                     OpcionesInvestigador()
                 elif respuesta == "no":
                     print("Usted ya tiene un equipo asignando, ingrese el numero de placa de su equipo para agregar otro.")
                     equipo = int(input("Ingrese la placa de su equipo: "))
-                    tipoSolicitud = "AgregarEquipo"
+                    tipoSolicitud = "Agregar Equipo"
                     investigador.generarSolicitud(tipoSolicitud, equipo)
                 else:
                     print("Opcion no valida, intente de nuevo.")
@@ -210,7 +213,7 @@ while rsp != "Salir":
                 print("Tu nombre es" + IV.getNombre() + "y tu id es" + str(IV.getId()))
                 respuesta = input("¿Es correcto? Escriba Si o No: ").lower()
                 if respuesta == "si":
-                    tipoSolicitud = "EliminarEquipo"
+                    tipoSolicitud = "Eliminar Equipo"
                     equipo = int(input("Ingrese el numero de placa del equipo que quiera eliminar: "))
                     investigador.generarSolicitud(tipoSolicitud, equipo)
                 else:

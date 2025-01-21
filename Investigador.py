@@ -59,10 +59,9 @@ class investigador(Usuario):
     def getListaSolicitudes(self):
         return self.getListaSolicitudes 
 
-    def generarSolicitud(self, tipo, k, equipo = None):
+    def generarSolicitud(self, tipoSolicitud, equipo = None):
 
-        # Solicitar información común a ambas solicitudes
-        nombreInvestigador = self.__nombre
+        nomInves = input("Ingrese su nombre: ")
         dd = input("Ingrese el día de la solicitud: ")
         mm = input("Ingrese el mes de la solicitud: ")
         aa = input("Ingrese el año de la solicitud: ")
@@ -72,50 +71,20 @@ class investigador(Usuario):
         nn = input("Ingrese el minuto de la solicitud: ")
         ss = input("Ingrese el segundo de la solicitud: ")
         horita = Hora(hh, nn, ss)
-        
-        nombre = input("Nombre del equipo: ")
-        placa = int(input("Numero de serie: "))
-        valorCompra= int(input("Costo del equipo: "))
-        
-        equipo1= Equipo(nombre, placa, valorCompra)
-        equipo1.setEmpAsociado(nombreInvestigador)
-        equipo1.setFechaCompra(fechita)
-        
-        equipo = equipo1
+        fechaDeSolicitud = FechaHora(fechita, horita)
+        estado = input("Dado que su solicitud es nueva escriba (Pendiente o pendiente): ")
 
-        fechahora = FechaHora(fechita, horita)
-        estado = str(input("Escriba el estado de la solicitud, escriba Pendiente o pendiente: "))
+        if tipoSolicitud == "Agregar Equipo":
+            solicitudNueva = Solicitud(nomInves, tipoSolicitud, + " " + estado)
+            solicitudNueva.setFechaSolicitud(fechaDeSolicitud)
+            solicitudNueva.setEquipo(equipo)
+            return solicitudNueva
+        elif tipoSolicitud == "Eliminar Equipo":
+            print("Agregue los datos del equipo que desee eliminar a continuacion. ")
+            Ejemplo = Equipo("HpVoltro", 1529, 800000)
 
-        # Validar según el tipo de solicitud
-        if tipo == "AgregarEquipo":
-            if equipo != None:
-                    solicitudNueva = Solicitud(k, tipo, estado)
-                    solicitudNueva.setFechaSolicitud(fechahora)
-                    solicitudNueva.setEquipo(None)
-                    
-                    return solicitudNueva
-                    
-                    
-                    
-            else: 
-                equipo in self.__inventario()
-                raise ValueError(f"El equipo {equipo} ya pertenece al inventario del investigador.")
-                
-                
-        elif tipo == "EliminarEquipo":
-            if equipo is None:
-                raise ValueError("Debe proporcionar un equipo para una solicitud de tipo 'EliminarEquipo'.")
-            
-            # Verificar si el equipo existe y está asignado
-            else:
-                solicitudNueva = Solicitud(nombreInvestigador, tipo, estado)
-                solicitudNueva.setFechaSolicitud(fechahora)
-                solicitudNueva.setEquipo(equipo1)
-                
-                #solicitudNueva.getListaSolicitudes().append(solicitudNueva)
-                #with open("Textos/SolicitudesPendientes.txt", "a") as i:
-                #    i.write("\n"+str(equipo1.getEmpAsociado())+" "+ str(investigador.getId()) + " " + str(equipo1))
-            print("Solicitud creada y agregada con exito")
+
+
         
     def generarInventario(self, lista, nombreArchivo):
         with open("Textos/" + nombreArchivo, "w") as archivo:

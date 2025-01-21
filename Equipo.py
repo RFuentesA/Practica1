@@ -1,7 +1,7 @@
 from Usuario import Usuario
 from Fecha import Fecha
 
-listaEquipos = []
+#listaEquipos = []
 class Equipo():
         
     def __init__(self, nombre, numeroPlaca, valorCompra):
@@ -10,7 +10,7 @@ class Equipo():
         self.__fechaCompra = Fecha
         self.__valorCompra = valorCompra
         self.__empAsociado = Usuario
-        listaEquipos.append(self)
+        #listaEquipos.append(self)
  
 
     def setNombre(self, n):
@@ -43,8 +43,8 @@ class Equipo():
     def getEmpAsociado(self):
         return self.__empAsociado
     
-    def getListaEquipos(self):
-        return self.__listaEquipos 
+    #def getListaEquipos(self):
+        #return self.__listaEquipos 
     
     
     def __str__(self):
