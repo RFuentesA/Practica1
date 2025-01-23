@@ -1,0 +1,5 @@
+
+Maria AgregarEquipo Aceptada 26 03 2003 12 00 00 AgregarEquipoAsus RFZ700 124578 26 03 2003 2500
+Maria AgregarEquipo Aceptada 26 03 2003 12 00 00 AgregarEquipoAsus RFZ700 124578 26 03 2003 2500
+Maria AgregarEquipo Aceptada 10 05 2003 12 00 00 AgregarEquipoThinkPad-LS2003 987 10 05 2003 1000
+Maria AgregarEquipo Aceptada 10 05 2003 12 00 00 AgregarEquipoThinkPad-LS2003 987 10 05 2003 1000

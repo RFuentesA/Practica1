@@ -1,0 +1,3 @@
+
+JAVA 23456 12 01 2002 300000
+JAVA 2345612 01 2002<bound method Equipo.getValorCompra of <Equipo.Equipo object at 0x000001C2184C0910>><bound method Equipo.setEmpAsociado of <Equipo.Equipo object at 0x000001C2184C0910>>
